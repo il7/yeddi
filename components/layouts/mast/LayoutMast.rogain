@@ -1,0 +1,7 @@
+<header class="l-mast">
+  <div class="l-mast-logo">
+    <a href="/"><Logo>IL7</Logo></a>
+  </div>
+
+  <LayoutMenu class="l-mast-nav" />
+</header>

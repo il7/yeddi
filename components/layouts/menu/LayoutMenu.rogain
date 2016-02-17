@@ -1,0 +1,10 @@
+<nav aria-role="menu">
+  <List mods="ordered inline">
+    <!-- Recieve `data` argument from outside `data` -->
+    <Each data={mainMenu}>
+      <ListItem aria-role="menu-item"> <!-- class={@item.href ? "has-link"}> -->
+        <a href={@item.href}>{@item.title}</a>
+      </ListItem>
+    </Each>
+  </List>
+</nav>

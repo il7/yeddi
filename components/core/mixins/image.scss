@@ -1,0 +1,15 @@
+@function image($src, $ext: 'png') {
+  @return #{'images/' + $src + '.' + $ext};
+}
+
+@function svg($src) {
+  @return #{'svg/' + $src + '.svg'};
+}
+
+@mixin background($color, $src, $size: auto, $pos: center center, $repeat: no-repeat) {
+  background-color: $color; 
+  background-image: #{'url(' + $src + ')'};
+  background-size: $size;
+  background-position: $pos;
+  background-repeat: $repeat;  
+}

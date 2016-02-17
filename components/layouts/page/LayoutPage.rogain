@@ -1,0 +1,5 @@
+<div class="l-page">
+  <LayoutMast />
+  <div id="content">{@children}</div>
+  <LayoutFooter />
+</div>

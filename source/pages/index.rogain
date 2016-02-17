@@ -1,0 +1,9 @@
+<LayoutRoot title="IL7">
+  <Heading class="l-" tagName="h1">{@attrs.title}</Heading>
+  <List>
+    <ListItem><a href="/home.html">Home</a></ListItem>
+    <ListItem><a href="/archive.html">Archive</a></ListItem>
+    <ListItem><a href="/post.html">Post</a></ListItem>
+    <ListItem><a href="/page.html">Page</a></ListItem>
+  </List>
+</LayoutRoot>

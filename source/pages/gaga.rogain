@@ -1,0 +1,13 @@
+<List>
+  <Each data={@attrs.data}>
+    <ListItem data-index={@index}>
+      <If data={@index} value="0">
+        <Heading><strong>{@item.title}</strong></Heading>
+      <Else />
+        <Heading>{@item.title}</Heading>
+      </If> 
+
+      <div><a href={@item.href}>Read More</a></div>
+    </ListItem>
+  </Each>
+</List>

@@ -1,0 +1,172 @@
+ // general plugins
+const fs = require('fs');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const sequence = require('run-sequence');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
+const changed = require('gulp-changed');
+const del = require('del');
+
+gulp.task('clean', function(done) {
+  del('./dist').then(() => done());
+})
+
+
+gulp.task('copy-assets', function() {
+  return gulp.src('./source/assets/**/*')
+    .pipe(gulp.dest('./dist/assets'))
+})
+
+// style plugins
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer-core');
+
+// Task `styles`
+// compiles stylesheet and optimises file 
+gulp.task('styles', function() {
+  return gulp.src('./source/style.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([
+      autoprefixer({ browsers: ['last 2 version'] })
+    ]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/assets'));
+});
+ 
+
+// script plugins
+const browserify = require('browserify');
+const watchify = require('watchify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+
+// Task `scripts`
+// compiles app script and optimises files 
+gulp.task('scripts-compile', scripts(false));
+gulp.task('scripts-develop', scripts(true));
+
+function scripts(watch) {
+  return function(done) {
+    var bundler = browserify({ 
+      entries: './source/main.js',
+      debug: true,
+      extensions: ['.js'],
+      cache: {},
+      packageCache: {}
+    });
+
+    bundler.transform(babelify, { 
+      presets: ['es2015']
+    });
+
+    
+    if (watch) {
+      bundler.plugin(watchify);
+      bundler.on('update', rebundle);
+      done();
+    } else {
+      rebundle();
+    }
+
+    function rebundle() {
+      gutil.log(watch ? '-> Rebundling' : '-> Bundling');
+      
+      return bundler.bundle()
+        .on('error', function(err) { 
+          gutil.log(err)
+          this.emit('end');
+        })
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest('./dist/assets'))
+        .on('end', function() { 
+          gutil.log('-> Bundling complete');
+          if (!watch) done();
+        });
+    }
+  };
+}
+
+// template plugins
+const Config = require('rogain-config');
+const renderToString = require('rogain-render-string');
+const Parser = require('rogain-parser');
+const through = require('through2');
+const prettify = require('gulp-prettify');
+
+
+var config = new Config({ 
+  helpers: require('rogain-core-helpers') 
+});
+
+gulp.task('precompile-templates', function() {
+  return gulp.src('./components/**/*.rogain')
+    .pipe(changed('./dist/assets/components', { extension: '.json' }))
+    .pipe(Parser.gulp(config))
+    // .pipe(Rogulp.parse(config))
+    // .pipe(Rogulp.register(config.components))
+    .pipe(gulp.dest('./dist/assets/components'))
+    .pipe(through.obj(function(file, enc, done) {
+      var path = file.path.substr(file.base.length);
+      var bits = path.split('/');
+      var name = bits[bits.length - 1].split('.json')[0];
+      config.components.register(name, JSON.parse(file.contents));
+      done(null, file);
+    }))
+});
+
+// Task `templates`
+// compile html templates
+gulp.task('render-templates', function() {
+  return gulp.src('./source/pages/*.rogain')
+    // .pipe(changed('./dist', { extension: '.html' }))
+    .pipe(Parser.gulp(config))
+    // .pipe(Rogulp.parse(config))
+    // .pipe(Rogulp.renderToString(data, config))
+    .pipe(rename(function (path) { path.extname = ".html"; }))
+    .pipe(through.obj(function(file, enc, done) {
+      var output = renderToString(JSON.parse(file.contents), {
+        mainMenu: [
+          { href: '/', title: 'Home' },
+          { href: '/articles', title: 'Articles' },
+          { href: '/open-source', title: 'Open Source' },
+          { href: '/contribute', title: 'Contribute' }
+        ]
+      }, config);
+
+      file.contents = new Buffer(output || '');
+      done(null, file);
+    }))
+    .pipe(prettify({ indent_size: 2 }))
+    .pipe(gulp.dest('./dist'));
+});
+ 
+gulp.task('templates', function(done) {
+  sequence('precompile-templates', 'render-templates', done);
+});
+
+// Task `watch`
+// run various tasks on file changes
+gulp.task('watch', function () {
+  gulp.watch('./components/**/*.scss', ['styles']);
+  gulp.watch('./components/**/*.rogain', ['templates']);
+  gulp.watch('./source/**/*.rogain', ['render-templates']);
+});
+ 
+// Task `compile`
+// Deletes dist folder and builds site from scratch
+gulp.task('compile', function(done) {
+  sequence('clean', ['templates', 'copy-assets', 'styles'], done);
+});
+ 
+// Task `develop`
+// Runs `compile` task then watches for file changes
+gulp.task('develop', function(done) {
+  sequence(['compile', 'scripts-develop'], 'watch', done);
+});
+ 
+gulp.task('default', ['compile', 'scripts-compile']);

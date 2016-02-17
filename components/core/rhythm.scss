@@ -1,0 +1,3 @@
+.rhythm > * + * { margin-top: $space; }
+.rhythm-small > * + * { margin-top: $space / 2; }
+.rhythm-large > * + * { margin-top: $space * 2; }

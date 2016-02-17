@@ -1,0 +1,14 @@
+.extend-base {
+  #{$type-headers} { @extend .heading };
+  
+  * + * {
+    // margin-top: $size-space;/
+    margin-top: $space;
+  } 
+
+  img { @extend .image; }
+
+  a { text-decoration: underline; 
+    &:hover { text-decoration: underline; }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "il7-yeddi",
+  "description": "Super secret development in plain view.",
+  "homepage": "https://github.com/il7/yeddi",
+  "version": "1.0.0",
+  "engines": {
+    "node": "5.x"
+  },
+  "scripts": {
+    "build": "gulp compile",
+    "develop": "gulp develop",
+    "start": "http-server ./dist",
+    "test": "tape test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:il7/yeddi.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^10.2.4",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-postcss": "^5.1.10",
+    "gulp-prettify": "^0.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.7",
+    "http-server": "^0.8.5",
+    "lodash": "^4.0.0",
+    "rogain": "^0.1.0",
+    "rogain-config": "^0.1.2",
+    "rogain-core-helpers": "^0.1.5",
+    "rogain-parser": "^0.2.0",
+    "rogain-render-string": "^0.1.5",
+    "run-sequence": "^1.1.1",
+    "tape": "^4.0.0",
+    "through2": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  }
+}
