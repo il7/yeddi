@@ -1,15 +1,9 @@
 $sizes: (
+  default: 1em,
   base: 120%,
   line: 1.4em,
   space: 1em,
   rhythm: 1em,
   gutter: 2em,
-  column: 8em
-);
-
-$widths: (
-  wide: columns(15),
-  default: columns(12),
-  text: columns(9),
-  narrow: columns(6),
+  column: 4em
 );

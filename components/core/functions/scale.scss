@@ -1,5 +1,5 @@
 @function scale($scale: 1, $size: space) {
-  @return size(space) * 1;
+  @return size($size) * $scale;
 }
 
 @function scale-quarter($size) { @return scale(0.25, $size); } 

@@ -25,6 +25,15 @@
   @media #{$query} { @content; };
 }
 
-@mixin respond--small { @include respond-below(640px) { @content; } }
-@mixin respond--mid { @include respond-between(640px, 960px) { @content; } }
-@mixin respond--large { @include respond-above(960px) { @content; } }
+
+@mixin respond--small {
+  @include respond-below(columns(text)) { @content; }
+}
+
+@mixin respond--mid {
+  @include respond-between(columns(text), columns(wide)) { @content; }
+}
+
+@mixin respond--large { 
+  @include respond-above(columns(wide)) { @content; }
+}
