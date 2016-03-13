@@ -16,14 +16,26 @@ html, body {
   text-rendering: geometricPrecision;
 }
 
-body {
-  padding: size(default);
-}
+body { 
+  padding: size(space);
 
-@include respond--small {
-  body { font-size: scale(0.9, base); }
-}
+  @include media-below(tiny) {
+    font-size: scale(0.5, base);
+  }
 
-@include respond--large {
-  body { font-size: scale(1.1, base); }
+  @include media-between(tiny, narrow) {
+    font-size: scale(0.8, base);
+  }
+
+  @include media-between(narrow, normal) {
+    font-size: scale(0.9, base);
+  }
+
+  @include media-between(wide, huge) {
+    font-size: scale(1.1, base);
+  }
+
+  @include media-above(huge) {
+    font-size: scale(1.3, base);
+  }
 }

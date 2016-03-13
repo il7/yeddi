@@ -1,0 +1,9 @@
+$medias: (
+  default: scale(count(default), column),
+  huge: scale(count(huge), column),
+  wide: scale(count(wide), column),
+  text: scale(count(text), column),
+  normal: scale(count(text), column),
+  narrow: scale(count(narrow), column),
+  tiny: scale(count(tiny), column)
+);

@@ -10,7 +10,6 @@
 }
 
 @mixin respond-between($min: null, $max: null, $media: screen) {
-  $max: $max - 1; // subtract 1 from max so (0, 720) and (720) dont overlap
   $query: "only " + $media + " and (min-width: " + $min + ") and (max-width: " + $max + ")";
   @media #{$query} { @content; };
 }
@@ -23,17 +22,4 @@
 @mixin respond-above($min: null, $media: screen) {
   $query: "only " + $media + " and (min-width: " + $min + ")";
   @media #{$query} { @content; };
-}
-
-
-@mixin respond--small {
-  @include respond-below(columns(text)) { @content; }
-}
-
-@mixin respond--mid {
-  @include respond-between(columns(text), columns(wide)) { @content; }
-}
-
-@mixin respond--large { 
-  @include respond-above(columns(wide)) { @content; }
 }
