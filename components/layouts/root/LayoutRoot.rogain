@@ -1,12 +1,11 @@
 <html class="l-root">
 <head>
+  <title>{@attrs.page-title}</title>
+	<meta name="title" content={@attrs.page-title} />
+  <meta name="description" content="" />
+  
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <title>{@attrs.title}</title>
-
-	<meta name="title" content={@attrs.title} />
-  <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -18,9 +17,9 @@
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
-{@children}
-<script src="/assets/bundle.js">
-  boogy = true;
-</script>
+
+<Children />
+
+<script src="/assets/bundle.js"></script>
 </body>
 </html>

@@ -3,5 +3,7 @@
     <a href="/"><Logo>IL7</Logo></a>
   </div>
 
-  <LayoutMenu class="l-mast-nav" />
+  <nav class="l-mast-nav">
+    <Menu data={mainMenu} />
+  </nav>
 </header>

@@ -1,4 +1,4 @@
- // general plugins
+// general plugins
 const fs = require('fs');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
@@ -6,6 +6,7 @@ const sequence = require('run-sequence');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const changed = require('gulp-changed');
+const flatten = require('gulp-flatten');
 const del = require('del');
 
 gulp.task('clean', function(done) {
@@ -92,59 +93,42 @@ function scripts(watch) {
 }
 
 // template plugins
+const Rogulp = require('rogulp');
 const Config = require('rogain-config');
-const renderToString = require('rogain-render-string');
-const Parser = require('rogain-parser');
 const through = require('through2');
 const prettify = require('gulp-prettify');
 
-
 var config = new Config({ 
-  helpers: require('rogain-core-helpers') 
+  components: require('rogain-core-helpers')
 });
+
+var data = {
+  mainMenu: [
+    { href: '/', title: 'Home' },
+    { href: '/articles', title: 'Articles' },
+    { href: '/open-source', title: 'Open Source' },
+    { href: '/contribute', title: 'Contribute' }
+  ]
+};
 
 gulp.task('precompile-templates', function() {
   return gulp.src('./components/**/*.rogain')
-    .pipe(changed('./dist/assets/components', { extension: '.json' }))
-    .pipe(Parser.gulp(config))
-    // .pipe(Rogulp.parse(config))
-    // .pipe(Rogulp.register(config.components))
-    .pipe(gulp.dest('./dist/assets/components'))
-    .pipe(through.obj(function(file, enc, done) {
-      var path = file.path.substr(file.base.length);
-      var bits = path.split('/');
-      var name = bits[bits.length - 1].split('.json')[0];
-      config.components.register(name, JSON.parse(file.contents));
-      done(null, file);
-    }))
+    .pipe(Rogulp.parse(config))
+    .pipe(Rogulp.register(config.components))
+    .pipe(flatten())
+    .pipe(gulp.dest('./dist/assets/components'));
 });
 
 // Task `templates`
 // compile html templates
 gulp.task('render-templates', function() {
   return gulp.src('./source/pages/*.rogain')
-    // .pipe(changed('./dist', { extension: '.html' }))
-    .pipe(Parser.gulp(config))
-    // .pipe(Rogulp.parse(config))
-    // .pipe(Rogulp.renderToString(data, config))
+    .pipe(Rogulp.parse(config))
+    .pipe(Rogulp.renderToString(data, config))
     .pipe(rename(function (path) { path.extname = ".html"; }))
-    .pipe(through.obj(function(file, enc, done) {
-      var output = renderToString(JSON.parse(file.contents), {
-        mainMenu: [
-          { href: '/', title: 'Home' },
-          { href: '/articles', title: 'Articles' },
-          { href: '/open-source', title: 'Open Source' },
-          { href: '/contribute', title: 'Contribute' }
-        ]
-      }, config);
-
-      file.contents = new Buffer(output || '');
-      done(null, file);
-    }))
-    .pipe(prettify({ indent_size: 2 }))
     .pipe(gulp.dest('./dist'));
 });
- 
+
 gulp.task('templates', function(done) {
   sequence('precompile-templates', 'render-templates', done);
 });
@@ -152,9 +136,11 @@ gulp.task('templates', function(done) {
 // Task `watch`
 // run various tasks on file changes
 gulp.task('watch', function () {
+  gulp.watch('./source/**/*.scss', ['styles']);
+  gulp.watch('./source/**/*.rogain', ['render-templates']);
+  
   gulp.watch('./components/**/*.scss', ['styles']);
   gulp.watch('./components/**/*.rogain', ['templates']);
-  gulp.watch('./source/**/*.rogain', ['render-templates']);
 });
  
 // Task `compile`

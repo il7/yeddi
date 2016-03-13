@@ -1,3 +1,5 @@
 <footer class="l-footer">
-  <LayoutMenu class="l-footer-nav" />
+  <nav class="l-footer-nav">
+    <Menu data={mainMenu} />
+  </nav>
 </footer>

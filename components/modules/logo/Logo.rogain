@@ -1,1 +1,1 @@
-<div class="logo">{@children}</div>	
+<div class="logo"><Children /></div>	

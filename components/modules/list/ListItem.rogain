@@ -1,1 +1,1 @@
-<li class="list-item">{@children}</li>
+<li class="list-item"><Children /></li>

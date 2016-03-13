@@ -1,5 +1,5 @@
-<LayoutRoot title="IL7">
-  <Heading class="l-" tagName="h1">{@attrs.title}</Heading>
+<LayoutRoot page-title="IL7">
+  <Heading tagName="h1">{@attrs.page-title}</Heading>
   <List>
     <ListItem><a href="/home.html">Home</a></ListItem>
     <ListItem><a href="/archive.html">Archive</a></ListItem>
