@@ -1,0 +1,3 @@
+@function size($name) {
+  @return map-get($sizes, $name);  
+}

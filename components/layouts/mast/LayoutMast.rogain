@@ -4,6 +4,6 @@
   </div>
 
   <nav class="l-mast-nav">
-    <Menu data={mainMenu} />
+    <Menu items={mainMenu} />
   </nav>
 </header>

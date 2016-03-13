@@ -1,24 +1,3 @@
-// includes (sass utilities)
-@import "./includes/variables";
-@import "./includes/reset";
-
-// various mixins
-@import "./mixins/respond";
-@import "./mixins/hidpi";
-@import "./mixins/image";
-
-// core stuff
-@import "../components/core/base";
-@import "../components/core/rhythm";
-
-// modules
-@import "../components/modules/heading/style";
-@import "../components/modules/list/style";
-@import "../components/modules/logo/style";
-@import "../components/modules/menu/style";
-
-// layouts
-@import "../components/layouts/root/style";
-@import "../components/layouts/page/style";
-@import "../components/layouts/mast/style";
-@import "../components/layouts/footer/style";
+@import "../components/core/style";
+@import "../components/layouts/style";
+@import "../components/modules/style";

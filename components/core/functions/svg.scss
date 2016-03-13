@@ -1,0 +1,3 @@
+@function svg($src) {
+  @return #{'svg/' + $src + '.svg'};
+}

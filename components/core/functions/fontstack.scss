@@ -1,0 +1,3 @@
+@function fontstack($name) {
+  @return map-get($fontstacks, $name);
+}

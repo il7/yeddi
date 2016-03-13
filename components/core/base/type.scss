@@ -1,0 +1,19 @@
+em, cite { font-style: italic; }
+
+strong { font-weight: weight(bold); }
+
+small { 
+  line-height: 120%;
+  font-size: 80%;
+  font-weight: weight(light);
+  color: color(mid);
+}
+
+@include selector(headers) {
+  font-family: fontstack(sans);
+}
+
+a {
+  text-decoration: underline;
+  color: color(dark);
+}

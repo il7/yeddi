@@ -1,0 +1,3 @@
+@function width($name) {
+  @return map-get($widths, $name);  
+}

@@ -1,0 +1,12 @@
+$durations: (
+  fast: 0.15s,
+  default: 0.3s,
+  medium: 0.7s,
+  slow: 1s
+);
+
+$easings: (
+  default: ease,
+  enter: ease-in,
+  exit: ease-out
+);

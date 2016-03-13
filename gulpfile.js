@@ -13,7 +13,6 @@ gulp.task('clean', function(done) {
   del('./dist').then(() => done());
 })
 
-
 gulp.task('copy-assets', function() {
   return gulp.src('./source/assets/**/*')
     .pipe(gulp.dest('./dist/assets'))
@@ -94,22 +93,10 @@ function scripts(watch) {
 
 // template plugins
 const Rogulp = require('rogulp');
-const Config = require('rogain-config');
 const through = require('through2');
 const prettify = require('gulp-prettify');
 
-var config = new Config({ 
-  components: require('rogain-core-helpers')
-});
-
-var data = {
-  mainMenu: [
-    { href: '/', title: 'Home' },
-    { href: '/articles', title: 'Articles' },
-    { href: '/open-source', title: 'Open Source' },
-    { href: '/contribute', title: 'Contribute' }
-  ]
-};
+var config = require('./rogain-config.js');
 
 gulp.task('precompile-templates', function() {
   return gulp.src('./components/**/*.rogain')
@@ -124,7 +111,11 @@ gulp.task('precompile-templates', function() {
 gulp.task('render-templates', function() {
   return gulp.src('./source/pages/*.rogain')
     .pipe(Rogulp.parse(config))
-    .pipe(Rogulp.renderToString(data, config))
+    .pipe(Rogulp.renderToString(function(file, done) {
+      fs.readFile(__dirname + '/source/data.json', function(err, data) {
+        done(err, JSON.parse(data));
+      });
+    }, config))
     .pipe(rename(function (path) { path.extname = ".html"; }))
     .pipe(gulp.dest('./dist'));
 });
@@ -137,6 +128,7 @@ gulp.task('templates', function(done) {
 // run various tasks on file changes
 gulp.task('watch', function () {
   gulp.watch('./source/**/*.scss', ['styles']);
+  gulp.watch('./source/*.json', ['render-templates']);
   gulp.watch('./source/**/*.rogain', ['render-templates']);
   
   gulp.watch('./components/**/*.scss', ['styles']);

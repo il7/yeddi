@@ -1,0 +1,11 @@
+.rhythm > * + * { 
+  margin-top: size(rhythm);
+}
+
+.rhythm-small > * + * {
+  margin-top: scale-half(rhythm);
+}
+
+.rhythm-large > * + * {
+  margin-top: scale-double(rhythm);
+}

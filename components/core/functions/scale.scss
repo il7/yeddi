@@ -1,0 +1,9 @@
+@function scale($scale: 1, $size: space) {
+  @return size(space) * 1;
+}
+
+@function scale-quarter($size) { @return scale(0.25, $size); } 
+@function scale-half($size)    { @return scale(0.5, $size); } 
+@function scale-double($size)  { @return scale(2, $size); } 
+@function scale-triple($size)  { @return scale(3, $size); } 
+@function scale-quad($size)    { @return scale(4, $size); } 

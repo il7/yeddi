@@ -1,0 +1,7 @@
+{
+  "mainMenu": [
+    { "slug": "articles", "title": "Articles" },
+    { "slug": "open-source", "title": "Open Source" },
+    { "slug": "contribute", "title": "Contribute" }
+  ]
+}

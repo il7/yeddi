@@ -1,0 +1,17 @@
+$fonts: ( );
+
+$fontstack-sans: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+$fontstack-mono: monospace;
+
+$fontstacks: (
+  sans: $fontstack-sans,
+  mono: $fontstack-mono
+);
+
+$weights: (
+  thin: 100,
+  light: 300,
+  normal: 500,
+  bold: 700,
+  heavy: 900
+);

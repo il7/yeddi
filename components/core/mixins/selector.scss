@@ -1,0 +1,5 @@
+@mixin selector($name) {
+  #{selector($name)} {
+    @content;
+  }
+}

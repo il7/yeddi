@@ -1,0 +1,3 @@
+@function image($src, $ext: 'png') {
+  @return #{'images/' + $src + '.' + $ext};
+}
