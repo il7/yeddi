@@ -5,12 +5,13 @@ strong { font-weight: weight(bold); }
 small { 
   line-height: 120%;
   font-size: 80%;
-  font-weight: weight(light);
+  font-weight: weight(default);
   color: color(mid);
 }
 
 @include selector(headers) {
   font-family: fontstack(sans);
+  font-weight: weight(heading);
 }
 
 a {

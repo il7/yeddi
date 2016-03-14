@@ -1,9 +1,8 @@
 <LayoutRoot page-title="IL7">
-  <LayoutPage>  
-    <Heading tagName="h1">{@attrs.page-title}</Heading>
+  <Heading tagName="h1">{@attrs.page-title}</Heading>
 
-    <List>
-      <ListItem><a href="/page.html">Page</a></ListItem>
-    </List>
-  </LayoutPage>
+  <List>
+    <ListItem><a href="/page.html">Page</a></ListItem>
+    <ListItem><a href="/contribute">Contribute</a></ListItem>
+  </List>
 </LayoutRoot>

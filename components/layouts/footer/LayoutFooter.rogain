@@ -1,5 +1,7 @@
-<footer class="l-footer">
-  <nav class="l-footer-nav">
-    <Menu items={mainMenu} />
-  </nav>
-</footer>
+<Strata tagName="header" class="l-footer">
+  <Wrapper>
+    <nav class="l-footer-nav">
+      <Menu items={mainMenu} />
+    </nav>
+  </Wrapper>
+</Strata>

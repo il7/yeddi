@@ -1,9 +1,11 @@
-<header class="l-mast">
-  <div class="l-mast-logo">
-    <a href="/"><Logo>IL7</Logo></a>
-  </div>
+<Strata tagName="header" class="l-mast">
+  <Wrapper>
+    <div class="l-mast-logo">
+      <a href="/"><Logo>IL7</Logo></a>
+    </div>
 
-  <nav class="l-mast-nav">
-    <Menu items={mainMenu} />
-  </nav>
-</header>
+    <nav class="l-mast-nav">
+      <Menu items={mainMenu} />
+    </nav>
+  </Wrapper>
+</Strata>

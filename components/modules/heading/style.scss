@@ -1,5 +1,12 @@
 .heading { 
-	font-size: 2em;
-	font-weight: 500;
-	line-height: 1.8em;
+	font-size: 200%;
+	font-weight: weight(normal);
+	line-height: scale(0.85, line);
 }
+
+h1.heading { font-size: 280%; }
+h2.heading { font-size: 240%; }
+h3.heading { font-size: 200%; }
+h4.heading { font-size: 170%; }
+h5.heading { font-size: 140%; }
+h6.heading { font-size: 110%; }

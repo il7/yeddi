@@ -98,7 +98,7 @@ const prettify = require('gulp-prettify');
 
 var config = require('./rogain-config.js');
 
-gulp.task('precompile-templates', function() {
+gulp.task('precompile-components', function() {
   return gulp.src('./components/**/*.rogain')
     .pipe(Rogulp.parse(config))
     .pipe(Rogulp.register(config.components))
@@ -109,8 +109,9 @@ gulp.task('precompile-templates', function() {
 // Task `templates`
 // compile html templates
 gulp.task('render-templates', function() {
-  return gulp.src('./source/pages/*.rogain')
-    .pipe(Rogulp.parse(config))
+  return gulp.src('./source/pages/**/*.rogain')
+    .pipe(Rogulp.parse(config)) 
+    .pipe(gulp.dest('./dist/assets/pages'))
     .pipe(Rogulp.renderToString(function(file, done) {
       fs.readFile(__dirname + '/source/data.json', function(err, data) {
         done(err, JSON.parse(data));
@@ -121,7 +122,7 @@ gulp.task('render-templates', function() {
 });
 
 gulp.task('templates', function(done) {
-  sequence('precompile-templates', 'render-templates', done);
+  sequence('precompile-components', 'render-templates', done);
 });
 
 // Task `watch`

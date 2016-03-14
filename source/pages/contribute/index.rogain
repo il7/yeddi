@@ -1,0 +1,17 @@
+<LayoutRoot page-title="Contribute">
+  <LayoutPage>  
+    <Wrapper class="rhythm-small">
+      <Heading tagName="h1">{@attrs.page-title}</Heading>
+
+      <p>Lorem ipsum Sed nulla amet it ad sint ut ad cillum cillum exercita tion occaecat pariatur aliquip Duis irure laborum do laborum et aliqua eiusmod exercitation quis in sint.</p>
+      <p>Lorem ipsum In veniam ad mollit mollit pariatur minim labore commodo reprehenderit sint consectetur laboris ea aute culpa pariatur adipisicing minim aliquip Excepteur dolor esse non aliquip aliqua eiusmod ut in esse dolor dolor in anim.</p>
+      <Heading tagName="h2">Boingo Oingo</Heading>
+      <p>Lorem ipsum Excepteur nostrud in adipisicing Excepteur consequat id do deserunt irure consequat veniam minim incididunt enim sed nisi nisi pariatur anim elit dolor ex laboris nisi Excepteur ullamco sint sint in labore dolor sunt eiusmod id minim ullamco consectetur pariatur irure.</p>
+      <p>Lorem ipsum Aute ut amet quis nostrud non aute qui do deserunt Excepteur magna sunt do dolore cillum tempor sed sint dolor irure proident quis irure consectetur do ea ea.</p>
+      <blockquote>Lorem ipsum Dolor ex non quis nisi exercitation anim cupidatat non ad adipisicing id deserunt fugiat incididunt amet cillum Ut in laboris in esse irure laborum fugiat tempor cupidatat nostrud eu incididunt nulla.</blockquote>
+      <Heading>Baking Soda Fever</Heading>
+      <p>Lorem ipsum Officia deserunt pariatur ullamco aliquip culpa proident ea ullamco non dolore labore reprehenderit quis ea esse sit dolor sed ex fugiat.</p>
+      <p>Lorem ipsum Labore eiusmod ut consequat irure eu Excepteur id Excepteur nulla consectetur eiusmod Duis irure culpa incididunt aute culpa Ut id enim ex laborum cupidatat proident in Ut ut nisi Excepteur in aute incididunt <a href="#/">occaecat occaecat est eiusmod.</a></p>
+    </Wrapper>
+  </LayoutPage>
+</LayoutRoot>

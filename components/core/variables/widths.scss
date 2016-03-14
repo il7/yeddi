@@ -1,6 +1,8 @@
 $widths: (
-  default: columns(default),
-  wide: columns(wide),
-  text: columns(text),
-  narrow: columns(narrow),
+  huge: scale(count(huge), column),
+  wide: scale(count(wide), column),
+  default: scale(count(default), column),
+  text: scale(count(text), column),
+  narrow: scale(count(narrow), column),
+  tiny: scale(count(tiny), column) 
 );

@@ -8,8 +8,8 @@ html, body {
   color: color(dark);
 
   font-family: fontstack(sans);
-  font-weight: weight(normal);
-  font-size: size(base);
+  font-weight: weight(default);
+  font-size: size(base); // eq to scale(1, base) 
   line-height: size(line);
 
   -webkit-tap-highlight-color: transparent;
@@ -27,7 +27,7 @@ body {
     font-size: scale(0.8, base);
   }
 
-  @include media-between(narrow, normal) {
+  @include media-between(narrow, default) {
     font-size: scale(0.9, base);
   }
 
