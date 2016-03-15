@@ -2,7 +2,9 @@
   <LayoutMast />
 
   <Strata tagName="main" id="content">
-    <Children />
+    <Wrapper class="rhythm-small">
+      <Children />
+    </Wrapper>
   </Strata>
   
   <LayoutFooter />

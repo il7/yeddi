@@ -1,7 +1,7 @@
 <Strata tagName="header" class="l-mast">
   <Wrapper>
     <div class="l-mast-logo">
-      <a href="/"><Logo>IL7</Logo></a>
+      <a href="/"><Logo /></a>
     </div>
 
     <nav class="l-mast-nav">

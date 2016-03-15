@@ -1,8 +1,10 @@
 <LayoutRoot page-title="IL7">
-  <Heading tagName="h1">{@attrs.page-title}</Heading>
+  <Wrapper>
+    <Logo />
 
-  <List>
-    <ListItem><a href="/page.html">Page</a></ListItem>
-    <ListItem><a href="/contribute">Contribute</a></ListItem>
-  </List>
+    <List>
+      <ListItem><a href="/page.html">Page</a></ListItem>
+      <ListItem><a href="/contribute">Contribute</a></ListItem>
+    </List>
+  </Wrapper>
 </LayoutRoot>
