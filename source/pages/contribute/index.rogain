@@ -1,6 +1,6 @@
 <LayoutRoot page-title="Contribute">
   <LayoutPage>  
-    <Wrapper class="rhythm-small">
+    <Wrapper class="wrapper-text rhythm-small">
       <Heading tagName="h1">{@attrs.page-title}</Heading>
 
       <p>Lorem ipsum Sed nulla amet it ad sint ut ad cillum cillum exercita tion occaecat pariatur aliquip Duis irure laborum do laborum et aliqua eiusmod exercitation quis in sint.</p>

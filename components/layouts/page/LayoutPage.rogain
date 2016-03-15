@@ -1,13 +1,9 @@
 <div class="l-page rhythm">
-  <Frame temp={@children}>
-    <LayoutMast />
+  <LayoutMast />
 
-    <Strata tagName="main" id="content">
-      <Frame @children={temp}>
-        <Children />
-      </Frame>
-    </Strata>
-    
-    <LayoutFooter />
-  </Frame>
+  <Strata tagName="main" id="content">
+    <Children />
+  </Strata>
+  
+  <LayoutFooter />
 </div>
