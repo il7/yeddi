@@ -1,8 +1,11 @@
 .strata {
   display: block;
-  padding: size(space);
+  padding: scale(1.5, space);
 
   & + & {
     padding-top: 0;
   }
+
 }
+
+.strata--no-padding { padding: 0; }

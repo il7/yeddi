@@ -1,11 +1,22 @@
 .l-mast {
-
+  padding: size(space);
 }
 
-.l-mast-logo {
-
-}
+.l-mast-logo { }
 
 .l-mast-nav {
   margin-top: size(space);
+}
+
+@include media-above(default) {
+  .l-mast-logo,
+  .l-mast-nav {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .l-mast-nav {
+    margin-top: 0;
+    margin-left: size(space);
+  }
 }

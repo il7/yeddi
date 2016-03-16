@@ -1,6 +1,6 @@
-.list {}
-.list-unordered {}
-.list-ordered {}
-.list-item {}
-.list-seperator { display: none; }
-.list-inline > li { display: inline-block; }
+.list { }
+.list-item { }
+
+.list--unordered { }
+.list--ordered { }
+.list--inline > li { display: inline-block; }
