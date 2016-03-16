@@ -1,5 +1,11 @@
 .logo {
-  line-height: scale(1, line);
-  font-size: 200%;
-  font-weight: weight(bold);
+  display: inline-block;
+  width: 100vw;
+  height: 100vw;
+
+  max-width: scale(2, column);
+  max-height: scale(2, column);
+
+  background-image: url(svg(logo));
+  background-size: 100%;
 }

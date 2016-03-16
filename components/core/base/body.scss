@@ -17,8 +17,6 @@ html, body {
 }
 
 body { 
-  padding: size(space);
-
   @include media-below(tiny) {
     font-size: scale(0.5, base);
   }

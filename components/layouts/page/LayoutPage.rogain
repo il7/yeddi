@@ -1,4 +1,4 @@
-<div class="l-page rhythm">
+<div class="l-page">
   <LayoutMast />
 
   <Strata tagName="main" id="content">

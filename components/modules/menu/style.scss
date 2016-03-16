@@ -1,5 +1,12 @@
-.menu {}
+.menu {
 
-.menu-articles { color: color(red); }
-.menu-open-source { color: color(purple); }
-.menu-contribute { color: color(blue); }
+
+  a { 
+    text-decoration: none;
+    font-weight: weight(normal);
+  }
+}
+
+.menu-articles a { color: color(red); }
+.menu-open-source a { color: color(purple); }
+.menu-contribute a { color: color(blue); }

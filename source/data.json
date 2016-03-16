@@ -1,4 +1,10 @@
 {
+  "styles": [
+    "/assets/style.css"
+  ],
+  "scripts": [
+    "/assets/bundle.js"
+  ],
   "mainMenu": [
     { "slug": "articles", "title": "Articles" },
     { "slug": "open-source", "title": "Open Source" },

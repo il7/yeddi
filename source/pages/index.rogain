@@ -1,10 +1,3 @@
 <LayoutRoot page-title="IL7">
-  <Wrapper>
-    <Logo />
-
-    <List>
-      <ListItem><a href="/page.html">Page</a></ListItem>
-      <ListItem><a href="/contribute">Contribute</a></ListItem>
-    </List>
-  </Wrapper>
+  <LayoutMast />
 </LayoutRoot>
