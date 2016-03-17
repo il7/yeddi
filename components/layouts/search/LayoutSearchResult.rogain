@@ -1,0 +1,4 @@
+<div class="l-search-result rhythm-small">
+  <Heading tagName="h4">{@attrs.data.title}</Heading>
+  <p>{@attrs.data.contents}</p>
+</div>

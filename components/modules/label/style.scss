@@ -1,0 +1,12 @@
+.heading { 
+	font-size: scale(1, hbase);
+	font-weight: weight(bold);
+	line-height: scale(0.75, line);
+}
+
+h1.heading { font-size: scale(1.5, hbase); }
+h2.heading { font-size: scale(1.2, hbase); }
+h3.heading { font-size: scale(1, hbase); }
+h4.heading { font-size: scale(0.85, hbase); }
+h5.heading { font-size: scale(0.7, hbase); }
+h6.heading { font-size: scale(0.5, hbase); }

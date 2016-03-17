@@ -1,0 +1,4 @@
+<Field class="field--text" name="def" label="def">
+  <Label for={@attrs.name}>{@attrs.label}</Label>
+  <Input name={@attrs.name} placeholder={@attrs.label} />
+</Field>

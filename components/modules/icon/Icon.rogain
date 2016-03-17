@@ -1,0 +1,1 @@
+<i class="icon icon--{@attrs.name}">{@attrs.name}</i>
