@@ -1,5 +1,32 @@
-.input {}
+.input {
+  padding: scale(0.25, space) scale(0.5, space);
+  
+  background-color: transparent;
+  color: color(light);
+
+  border: none;
+  border-bottom: 2px solid color(mid);
+
+  font-family: fontstack(sans);
+  font-size: scale(0.75, base);
+
+  &:focus {
+    background-color: rgba(color(light), 0.05);
+    border-bottom-color: color(red);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: color(mid);
+  }
+}
 
 .input--text {}
 .input--password {}
 .input--button {}
+
+.input--large {
+  padding: scale(0.75, space) scale(1, space);
+
+  @extend h3.heading;
+}

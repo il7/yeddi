@@ -1,3 +1,1 @@
-<Frame type="text" placeholder="">
-  <input class="input input--{@attrs.type}" type={@attrs.type} placeholder={@attrs.placeholder} />
-</Frame>
+<input class="input input--{@attrs.type}" type={@attrs.type} placeholder={@attrs.placeholder} />

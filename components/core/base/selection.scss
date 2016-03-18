@@ -1,2 +1,5 @@
 img::selection, 
-::selection { background-color: rgba(color(dark), 0.25); }
+::selection { 
+  background-color: color(red);
+  color: white;
+}
