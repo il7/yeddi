@@ -1,31 +1,20 @@
 <Strata tagName="aside" class="l-search" aria-role="search">
   <LayoutMast class="strata--no-padding" />
+
+  <br />
   
-  <Wrapper>
-    <Heading tagName="h3" class="u-visually-hidden">Search</Heading>
-    
-    <form class="l-search-form" action="#">
-      <Field name="query" label="What are you looking for?" >
-        <Label for={@attrs.name}>{@attrs.label}</Label>
-        <Input class="input--large" name={@attrs.name} placeholder={@attrs.label} />
-      </Field>
-      <Button tagName="submit"><Icon name="lens" /></Button>
-    </form>
+  <Wrapper class="rhythm-large">
+    <div class="rhythm">
+      <Heading tagName="h3" class="u-visually-hidden">Search</Heading>
+      
+      <form class="l-search-form" action="#">
+        <FieldText name="query" label="What are you looking for?" />
+        <Button tagName="submit"><Icon name="lens" /></Button>
+      </form>
+    </div>
 
     <List class="l-search-results rhythm" aria-role="search-results">
       <Each data={searchResults} as="result">
-        <Defined data={searchHasLocation}>
-          <If data={@index} value="0">
-            <ListItem><br /></ListItem>
-            <ListItem class="l-search-segtitle"><Heading tagName="h3">Location Header</Heading></ListItem>
-          </If>
-
-          <If data={@index} value={searchSplitAt}>
-            <ListItem><br /></ListItem>
-            <ListItem class="l-search-segtitle"><Heading tagName="h3">Other Header</Heading></ListItem>
-          </If>
-        </Defined>
-
         <ListItem>
           <LayoutSearchResult data={result} />
         </ListItem>
