@@ -1,3 +1,3 @@
 const app = {
-	content: document.querySelector('#content')
+	content: document.querySelector('#node')
 };

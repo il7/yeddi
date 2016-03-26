@@ -1,5 +1,6 @@
 const sourcemaps = require('gulp-sourcemaps');
 const gutil = require('gulp-util');
+const path = require('path');
 
 // script plugins
 const browserify = require('browserify');
@@ -11,53 +12,48 @@ const buffer = require('vinyl-buffer');
 module.exports = function(gulp, dirs) {
   // Task `scripts`
   // compiles app script and optimises files 
-  gulp.task('scripts-compile', function(done) {
-    var bundler = createBundler();
-    var rebundle = createRebundler(bundler, gulp, done)();
+  gulp.task('scripts-compile', function() {
+    var opts = Object.assign({}, watchify.args, {
+      entries: path.resolve(dirs.src, 'main.js'),
+      debug: true
+    });
+
+    var b = browserify(opts);
+    return createBundler(b, 'bundle.js', dirs);
   });
 
-  gulp.task('scripts-develop', function(done) {
-    var bundler = createBundler();
-    var rebundle = createRebundler(bundler, gulp, done)();
+  gulp.task('scripts-develop', function() {
+    var opts = Object.assign({}, watchify.args, {
+      entries: path.resolve(dirs.src, 'main.js'),
+      debug: true
+    });
 
-    // bundler.plugin(watchify);
-    // bundler.on('update', rebundle);
-    // done();
-  });
-}
-
-
-function createBundler() {
-  var bundler = browserify({ 
-    entries: './source/main.js',
-    debug: true,
-    extensions: ['.js'],
-    cache: {},
-    packageCache: {}
+    var b = watchify(browserify(opts)); 
+    return createBundler(b, 'bundle.js', dirs);
   });
 
-  bundler.transform(babelify, { 
-    presets: ['es2015']
-  });
+  function createBundler(b, name, dirs) {
+    b.transform(babelify, { 
+      presets: ['es2015']
+    });
 
-  return bundler;
-}
+    b.on('update', bundle); // on any dep update, runs the bundler
+    b.on('log', gutil.log); // output build logs to terminal
 
-function createRebundler(bundler, gulp, done) {
-  return function rebundle() {
-    gutil.log('-> Bundling');
-    
-    return bundler.bundle()
-      .on('error', function(err) { 
-        gutil.log(err)
-        this.emit('end');
-      })
-      .pipe(source('bundle.js'))
-      .pipe(buffer())
-      .pipe(gulp.dest('dist/assets'))
-      .on('end', function() { 
-        gutil.log('-> Bundling complete');
-        if (done !== undefined) done();
-      });
+    function bundle() {
+      return b.bundle()
+        // log errors if they happen
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+        .pipe(source(name))
+        // optional, remove if you don't need to buffer file contents
+        .pipe(buffer())
+        // optional, remove if you dont want sourcemaps
+        .pipe(sourcemaps.init({ loadMaps: true })) // loads map from browserify file
+           // Add transformation tasks to the pipeline here.
+        .pipe(sourcemaps.write('./')) // writes .map file
+        .pipe(gulp.dest(dirs.assets));
+    }
+
+    return bundle();
   }
 }

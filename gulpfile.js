@@ -30,7 +30,7 @@ gulp.task('watch', function () {
 // Task `compile`
 // Deletes dist folder and builds site from scratch
 gulp.task('compile', function(done) {
-  sequence('clean', ['templates', 'copy-assets', 'styles'], done);
+  sequence('clean', ['templates', 'copy-assets', 'styles', 'scripts-compile'], done);
 });
  
 // Task `develop`
