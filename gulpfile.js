@@ -10,12 +10,12 @@ const flatten = require('gulp-flatten');
 const del = require('del');
 
 gulp.task('clean', function(done) {
-  del('./dist').then(() => done());
+  del('dist').then(() => done());
 })
 
 gulp.task('copy-assets', function() {
-  return gulp.src('./source/assets/**/*')
-    .pipe(gulp.dest('./dist/assets'))
+  return gulp.src('source/assets/**/*')
+    .pipe(gulp.dest('dist/assets'))
 })
 
 // style plugins
@@ -26,14 +26,14 @@ const autoprefixer = require('autoprefixer-core');
 // Task `styles`
 // compiles stylesheet and optimises file 
 gulp.task('styles', function() {
-  return gulp.src('./source/style.scss')
+  return gulp.src('source/style.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       autoprefixer({ browsers: ['last 2 version'] })
     ]))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/assets'));
+    .pipe(gulp.dest('dist/assets'));
 });
  
 
@@ -62,8 +62,7 @@ function scripts(watch) {
     bundler.transform(babelify, { 
       presets: ['es2015']
     });
-
-    
+   
     if (watch) {
       bundler.plugin(watchify);
       bundler.on('update', rebundle);
@@ -82,7 +81,7 @@ function scripts(watch) {
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(gulp.dest('./dist/assets'))
+        .pipe(gulp.dest('dist/assets'))
         .on('end', function() { 
           gutil.log('-> Bundling complete');
           if (!watch) done();
@@ -99,40 +98,62 @@ const prettify = require('gulp-prettify');
 var config = require('./rogain-config.js');
 
 gulp.task('precompile-components', function() {
-  return gulp.src('./components/**/*.rogain')
+  return gulp.src('components/**/*.rogain')
+    .pipe(flatten())
+    .pipe(changed('dist/assets/components', { extension: '.json' }))
     .pipe(Rogulp.parse(config))
     .pipe(Rogulp.register(config.components))
-    .pipe(flatten())
-    .pipe(gulp.dest('./dist/assets/components'));
+    .pipe(gulp.dest('dist/assets/components'));
+});
+
+gulp.task('precompile-pages', function() {
+  return gulp.src('source/pages/**/*.rogain')
+    .pipe(changed('dist/assets/pages', { extension: '.json' }))
+    .pipe(Rogulp.parse(config)) 
+    .pipe(gulp.dest('dist/assets/pages'));
 });
 
 // Task `templates`
 // compile html templates
-gulp.task('render-templates', function() {
-  return gulp.src('./source/pages/**/*.rogain')
-    .pipe(Rogulp.parse(config)) 
-    .pipe(gulp.dest('./dist/assets/pages'))
+gulp.task('render-pages', function() {
+  var stream = gulp.src('dist/assets/pages/**/*.json')
+    .pipe(changed('dist', { extension: '.html' }));
+
+  return renderPages(stream).pipe(gulp.dest('dist'));
+});
+
+gulp.task('force-render-pages', function() {
+  return renderPages(gulp.src('dist/assets/pages/**/*.json'))
+    .pipe(gulp.dest('dist'));
+});
+
+function renderPages(stream) {
+  return stream
     .pipe(Rogulp.renderToString(function(file, done) {
       fs.readFile(__dirname + '/source/data.json', function(err, data) {
         done(err, JSON.parse(data));
       });
     }, config))
-    .pipe(rename(function (path) { path.extname = ".html"; }))
-    .pipe(gulp.dest('./dist'));
-});
+    .pipe(rename(function (path) { path.extname = ".html"; }));
+}
 
 gulp.task('templates', function(done) {
-  sequence('precompile-components', 'render-templates', done);
+  sequence(['precompile-components', 'precompile-pages'], 'render-pages', done);
 });
+
+gulp.task('pages', function(done) {
+  sequence('precompile-pages', 'render-pages', done);
+});
+
 
 // Task `watch`
 // run various tasks on file changes
 gulp.task('watch', function () {
   gulp.watch('./source/**/*.scss', ['styles']);
-  gulp.watch('./source/*.json', ['render-templates']);
-  gulp.watch('./source/**/*.rogain', ['render-templates']);
-  
   gulp.watch('./components/**/*.scss', ['styles']);
+  
+  gulp.watch('./source/*.json', ['force-render-pages']);
+  gulp.watch('./source/**/*.rogain', ['pages']);
   gulp.watch('./components/**/*.rogain', ['templates']);
 });
  

@@ -1,3 +1,4 @@
-<LayoutRoot page-title="Search">
+<LayoutRoot site-name="Buggies" page-title="Search" bodyClass="l-root--dark">
+  <LayoutMast />
   <LayoutSearch />
 </LayoutRoot>

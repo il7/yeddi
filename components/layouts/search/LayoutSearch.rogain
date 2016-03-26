@@ -1,8 +1,4 @@
-<Strata tagName="aside" class="l-search" aria-role="search">
-  <LayoutMast class="strata--no-padding" />
-
-  <br />
-  
+<Strata tagName="aside" class="l-search" aria-role="search">  
   <Wrapper class="rhythm-large">
     <div class="rhythm">
       <Heading tagName="h3" class="u-visually-hidden">Search</Heading>
