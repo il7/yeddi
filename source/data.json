@@ -21,7 +21,6 @@
     { "title": "Goodbye", "contents": "Lorem ipsum Do ullamco non eu nulla velit culpa ut magna commodo velit reprehenderit elit id et id veniam nostrud sint sint do labore." },
     { "title": "Split Ends", "contents": "Lorem ipsum Do ullamco non eu nulla velit culpa ut magna commodo velit reprehenderit elit id et id veniam nostrud sint sint do labore." }
   ],
-
   "searchSplitAt": 3,
   "searchHasLocation": true
 }
