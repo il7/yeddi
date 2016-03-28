@@ -11,7 +11,7 @@ small {
 
 @include selector(headers) {
   font-family: fontstack(sans);
-  font-weight: weight(heading);
+  font-weight: weight(bold);
 }
 
 a {

@@ -1,5 +1,4 @@
 <LayoutRoot page-title={title} bodyClass="p-basic p--{slug}">
-  {contents}
-  
+  {contents}  
   <LayoutFooter />
 </LayoutRoot>

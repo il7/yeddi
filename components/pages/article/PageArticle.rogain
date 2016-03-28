@@ -1,5 +1,5 @@
 <LayoutRoot page-title={title} bodyClass="p-article p--{slug}">
-  <LayoutPage class="extend-base">
+  <LayoutPage class="content">
     {contents}
   </LayoutPage>
 </LayoutRoot>

@@ -1,6 +1,7 @@
 .heading { 
+  font-family: fontstack(sans);
+  font-weight: weight(bold);
 	font-size: scale(1, hbase);
-	font-weight: weight(bold);
 	line-height: scale(0.75, line);
 }
 
