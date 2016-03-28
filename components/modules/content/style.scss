@@ -1,0 +1,36 @@
+.content {
+  @include selector(headers) { @extend .heading; }
+
+  h1 { @extend h1.heading; }
+  h2 { @extend h2.heading; }
+  h3 { @extend h3.heading; }
+  h4 { @extend h4.heading; }
+  h5 { @extend h5.heading; }
+  h6 { @extend h6.heading; }
+  
+  p, blockquote { @extend .textblock; }
+  blockquote { @extend .textblock--blockquote; }
+
+  ul, ol { @extend .list; }
+  ul { @extend .list--unordered; }
+  ol { @extend .list--ordered; }
+
+  fieldset { @extend .field; }
+  label { @extend .label; }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="text"] { @extend .input; }
+
+  input[type="text"] { @extend .input--text; }
+  input[type="password"] { @extend .input--password; }
+
+  input[type="button"],
+  input[type="submit"] { @extend .input--button; }
+
+  button { @extend .button; }
+
+  * + * {
+    margin-top: size(rhythm);
+  }
+}

@@ -19,6 +19,9 @@
   &::placeholder {
     color: color(mid);
   }
+
+  &:valid { }
+  &:invalid { }
 }
 
 .input--text {}
