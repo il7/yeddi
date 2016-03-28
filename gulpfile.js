@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const sequence = require('run-sequence');
 const path = require('path');
 
-const paths = {
+const dirs = {
   src: 'source',
   dest: 'dist',
   pages: 'pages',
@@ -11,10 +11,10 @@ const paths = {
   components: 'components' 
 };
 
-require('./build/core')(gulp, paths);
-require('./build/styles')(gulp, paths);
-require('./build/scripts')(gulp, paths);
-require('./build/templates')(gulp, paths);
+require('./build/core')(gulp, dirs);
+require('./build/styles')(gulp, dirs);
+require('./build/scripts')(gulp, dirs);
+require('./build/templates')(gulp, dirs);
 
 // Task `watch`
 // run various tasks on file changes

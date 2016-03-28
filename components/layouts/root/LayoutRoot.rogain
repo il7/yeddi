@@ -20,18 +20,16 @@
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
 
-    <Each data={styles} as="stylesheet">
-      <link rel="stylesheet" href={stylesheet} />
-    </Each>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <Defined data={@attrs.page-css}>
+      <link rel="stylesheet" href="{@attrs.page-css}" />
+    </Defined>
   </head>
   <body class={@attrs.bodyClass}>
 
   <Children />
 
-  <Each data={scripts} as="script">
-    <script src={script}></script>
-  </Each>
-
+  <script src="/assets/bundle.js"></script>
   </body>
   </html>
 </Frame>

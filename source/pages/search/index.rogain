@@ -1,4 +1,4 @@
-<LayoutRoot site-name="Buggies" page-title="Search" bodyClass="l-root--dark">
+<LayoutRoot page-title="Search" page-resource="/search" bodyClass="l-root--dark p-search">
   <LayoutMast />
-  <LayoutSearch />
+  <LayoutSearch class="p-search-content" />
 </LayoutRoot>

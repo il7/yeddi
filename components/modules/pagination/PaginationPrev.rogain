@@ -1,0 +1,4 @@
+<a class="pagination-prev" href={@attrs.href}>
+  <span>Previous</span>
+  <Icon name="arrow-left" />
+</a>

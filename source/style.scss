@@ -1,3 +1,5 @@
-@import "../components/core/style";
-@import "../components/layouts/style";
-@import "../components/modules/style";
+@import "utils/imports";
+
+@import "../components/core/imports";
+@import "../components/layouts/imports";
+@import "../components/modules/imports";

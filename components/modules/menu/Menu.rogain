@@ -1,6 +1,6 @@
 <List class="menu" aria-role="menu">
   <Each data={@attrs.items}>
-    <ListItem class="menu--{@item.slug}" aria-role="menu-item">
+    <ListItem data-id={@index} class="menu--{@item.slug}" aria-role="menu-item">
       <a href="/{@item.slug}">{@item.title}</a>
     </ListItem>
   </Each>

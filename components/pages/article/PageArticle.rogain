@@ -1,0 +1,5 @@
+<LayoutRoot page-title={title} bodyClass="p-article p--{slug}">
+  <LayoutPage>
+    {contents}
+  </LayoutPage>
+</LayoutRoot>

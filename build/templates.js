@@ -45,7 +45,7 @@ module.exports = function(gulp, dirs) {
   });
 
   gulp.task('templates', function(done) {
-    sequence(['precompile-components', 'precompile-pages'], 'render-pages', done);
+    sequence(['precompile-components', 'precompile-pages'], 'force-render-pages', done);
   });
 
   gulp.task('pages', function(done) {
