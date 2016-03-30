@@ -1,11 +1,21 @@
-var plugins = require('load-pluginss')('metalsmith-*');
+var ignore = require('metalsmith-ignore');
+var publish = require('metalsmith-publish');
+var markdown = require('metalsmith-markdown');
+var headingsIdentifier = require('metalsmith-headings-identifier');
+var paths = require('metalsmith-paths');
+var hierarchy = require('metalsmith-hierarchy');
+var filemetadata = require('metalsmith-filemetadata');
+var collections = require('metalsmith-collections');
+var pagination = require('metalsmith-pagination');
+var externalLinks = require('metalsmith-external-links')
+
 var config = require('./rogain-config');
 
 module.exports = function(ms) {
   ms.use(IgnoreFiles)
     .use(Published)
     .use(Markdown)
-    .use(RenderInPageRogain)
+    .use(RenderInPlace)
     .use(DefaultMetadata)
     .use(Collections)
     .use(Pagination)
@@ -16,18 +26,18 @@ module.exports = function(ms) {
 };
 
 // Plugins
-var IgnoreFiles = plugins.ignore([ '**/.DS_Store' ]);
-var Published = plugins.publish();
-var Markdown = plugins.markdown();
-var Headings = plugins.headingsIdentifier();
-var Paths = plugins.paths();
-var Hierarchy = plugins.hierarchy();
+var IgnoreFiles = ignore([ '**/.DS_Store' ]);
+var Published = publish();
+var Markdown = markdown();
+var Headings = headingsIdentifier();
+var Paths = paths();
+var Hierarchy = hierarchy();
 var ExLinks = externalLinks({ domain: "il7.io" });
 
 var RenderInPlace = require('./plugins/renderRogainInPlace');
 var RenderLayouts = require('./plugins/renderRogainLayout');
 
-var DefaultMetadata = plugins.filemetadata([{
+var DefaultMetadata = filemetadata([{
   pattern: 'articles/**/*', 
   metadata: {
     layout: 'PageArticle.rogain',
@@ -41,7 +51,7 @@ var DefaultMetadata = plugins.filemetadata([{
   }
 }]);
 
-var ArchiveIndexMetadata = plugins.filemetadata([{
+var ArchiveIndexMetadata = filemetadata([{
   pattern: 'articles/index.html', 
   metadata: { collection: 'mainMenu' }
 }, {
@@ -49,12 +59,12 @@ var ArchiveIndexMetadata = plugins.filemetadata([{
   metadata: { collection: 'mainMenu' }
 }]);
 
-var Collections = plugins.collections({
+var Collections = collections({
   articles: 'articles/**/*',
   repos: 'open-source/**/*'
 });
 
-var Pagination = plugins.pagination({
+var Pagination = pagination({
   'collections.articles': {
     perPage: 7,
     layout: 'PageArchive.rogain',

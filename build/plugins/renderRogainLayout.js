@@ -1,3 +1,5 @@
+'use strict';
+
 const match = require('minimatch');
 const parallel = require('run-parallel')
 const parser = require('rogain-parser');

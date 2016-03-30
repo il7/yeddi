@@ -7,6 +7,7 @@ const flatten = require('gulp-flatten');
 const sequence = require('run-sequence');
 
 // template plugins
+const Metalsmith = require('metalsmith');
 const Rogulp = require('rogulp');
 const through = require('through2');
 const prettify = require('gulp-prettify');
@@ -46,7 +47,7 @@ module.exports = function(gulp, dirs) {
   });
 
   gulp.task('metalsmith', function() {
-    var ms = new Metalsmith(path.resolve(__dirname + '..'))
+    var ms = new Metalsmith(path.resolve(__dirname + '/..'))
       .clean(false)
       .source('source/pages')
       .destination('dist');
