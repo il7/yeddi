@@ -12,6 +12,7 @@ const through = require('through2');
 const prettify = require('gulp-prettify');
 
 var config = require('./rogain-config.js');
+var metalfile = require('./metalfile.js');
 
 module.exports = function(gulp, dirs) {
   gulp.task('precompile-components', function() {
@@ -42,6 +43,20 @@ module.exports = function(gulp, dirs) {
   gulp.task('force-render-pages', function() {
     var stream = gulp.src(path.resolve(dirs.assets, dirs.pages, '**/*.json'));
     return renderPages(stream).pipe(gulp.dest(dirs.dest));
+  });
+
+  gulp.task('metalsmith', function() {
+    var ms = new Metalsmith(path.resolve(__dirname + '..'))
+      .clean(false)
+      .source('source/pages')
+      .destination('dist');
+
+    metalfile(ms);
+
+    ms.build(function(err) {
+      if (err) throw err;
+      done(err);
+    });
   });
 
   gulp.task('templates', function(done) {
