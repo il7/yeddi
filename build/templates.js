@@ -40,8 +40,8 @@ module.exports = function(gulp, dirs) {
   });
 
   gulp.task('force-render-pages', function() {
-    return renderPages(gulp.src(path.resolve(dirs.assets, dirs.pages, '**/*.json')))
-      .pipe(gulp.dest(dirs.dest));
+    var stream = gulp.src(path.resolve(dirs.assets, dirs.pages, '**/*.json'));
+    return renderPages(stream).pipe(gulp.dest(dirs.dest));
   });
 
   gulp.task('templates', function(done) {

@@ -1,8 +1,11 @@
+var plugins = require('load-pluginss')('metalsmith-*');
+var config = require('./rogain-config');
+
 module.exports = function(ms) {
   ms.use(IgnoreFiles)
     .use(Published)
     .use(Markdown)
-    .use(RenderInPlace)
+    .use(RenderInPageRogain)
     .use(DefaultMetadata)
     .use(Collections)
     .use(Pagination)
@@ -11,10 +14,6 @@ module.exports = function(ms) {
     .use(RenderLayouts)
     .use(ExLinks)
 };
-
-// imports
-var plugins = require('load-pluginss')('metalsmith-*');
-var config = require('./rogain-config');
 
 // Plugins
 var IgnoreFiles = plugins.ignore([ '**/.DS_Store' ]);
@@ -25,15 +24,8 @@ var Paths = plugins.paths();
 var Hierarchy = plugins.hierarchy();
 var ExLinks = externalLinks({ domain: "il7.io" });
 
-var RenderInPlace = plugins.rogain({
-  inPlace: true,
-  config: config
-});
-
-var RenderLayouts = plugins.rogain({
-  inPlace: false,
-  config: config
-})
+var RenderInPlace = require('./plugins/renderRogainInPlace');
+var RenderLayouts = require('./plugins/renderRogainLayout');
 
 var DefaultMetadata = plugins.filemetadata([{
   pattern: 'articles/**/*', 
