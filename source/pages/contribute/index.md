@@ -1,7 +1,6 @@
 ---
 title: Contribute
 layout: PageArticle.rogain
-collection: mainMenu
 parent: index.html
 ---
 

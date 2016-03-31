@@ -5,7 +5,7 @@
     </div>
 
     <nav class="l-mast-nav">
-      <Menu items={mainMenu} />
+      <Menu items={collections.mainMenu} />
     </nav>
   </Wrapper>
 </Strata>

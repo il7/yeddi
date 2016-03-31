@@ -35,9 +35,9 @@ module.exports = function use(ms) {
     .use(ArchiveIndexMetadata)
     .use(Hierarchy)
     .use(Rewrite)
+    .use(collections())
     .use(RenderLayouts)
     .use(IgnoreComponents)
-    // .use(ExLinks);
 };
 
 // Plugins
@@ -52,7 +52,7 @@ var ExLinks = externalLinks({ domain: "il7.io" });
 var Rewrite = rewrite({
   pattern: '**/*.rogain',
   filename: '{path.dir}/{path.name}.html'
-})
+});
 
 var RenderInPlace = require('./plugins/renderRogainInPlace');
 var RenderLayouts = require('./plugins/renderRogainLayout');
@@ -76,6 +76,9 @@ var ArchiveIndexMetadata = filemetadata([{
   metadata: { collection: 'mainMenu' }
 }, {
   pattern: 'open-source/index.html',
+  metadata: { collection: 'mainMenu' }
+}, {
+  pattern: 'contribute/index.html',
   metadata: { collection: 'mainMenu' }
 }]);
 

@@ -22,8 +22,7 @@ module.exports = function(gulp, dirs) {
       .pipe(flatten())
       .pipe(changed(path.resolve(dirs.assets, dirs.components), { extension: '.json' }))
       .pipe(Rogulp.parse(config))
-      .pipe(Rogulp.register(config.components))
-      .pipe(gulp.dest(path.resolve(dirs.assets, dirs.components)))
+      // .pipe(gulp.dest(path.resolve(dirs.assets, dirs.components)))
       .pipe(gulp.dest(path.resolve(dirs.src, dirs.pages, dirs.components)));
   });
 
