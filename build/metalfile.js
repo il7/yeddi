@@ -8,10 +8,11 @@ var filemetadata = require('metalsmith-filemetadata');
 var collections = require('metalsmith-collections');
 var pagination = require('metalsmith-pagination');
 var externalLinks = require('metalsmith-external-links')
+var through = require('through2');
 
 var config = require('./rogain-config');
 
-module.exports = function(ms) {
+module.exports = function(ms, gulp, done) {
   ms.use(IgnoreFiles)
     .use(Published)
     .use(Markdown)
@@ -22,7 +23,7 @@ module.exports = function(ms) {
     .use(ArchiveIndexMetadata)
     .use(Hierarchy)
     .use(RenderLayouts)
-    .use(ExLinks)
+    .use(ExLinks);
 };
 
 // Plugins

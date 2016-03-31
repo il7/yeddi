@@ -19,7 +19,6 @@ module.exports = function RenderRogainInPlace(files, meta, done) {
           d();
         });
       }
-
     }
   }), done)
 }

@@ -46,22 +46,25 @@ module.exports = function(gulp, dirs) {
     return renderPages(stream).pipe(gulp.dest(dirs.dest));
   });
 
-  gulp.task('metalsmith', function() {
+  gulp.task('metalsmith', function(done) {
     var ms = new Metalsmith(path.resolve(__dirname + '/..'))
       .clean(false)
       .source('source/pages')
       .destination('dist');
+      console.log('00')
 
-    metalfile(ms);
-
-    ms.build(function(err) {
-      if (err) throw err;
-      done(err);
+    metalfile(ms, gulp, function() {
+      console.log('aa')
+      ms.build(function(err) {
+      console.log('bb')
+        if (err) throw err;
+        done(err);
+      });
     });
   });
 
   gulp.task('templates', function(done) {
-    sequence(['precompile-components', 'precompile-pages'], 'force-render-pages', done);
+    sequence(['precompile-components', 'precompile-pages'], 'metalsmith', done);
   });
 
   gulp.task('pages', function(done) {
