@@ -17,12 +17,14 @@ var metalfile = require('./metalfile.js');
 
 module.exports = function(gulp, dirs) {
   gulp.task('precompile-components', function() {
+    console.log(path.resolve(dirs.src, dirs.pages, dirs.components))
     return gulp.src(path.resolve(dirs.components, '**/*.rogain'))
       .pipe(flatten())
       .pipe(changed(path.resolve(dirs.assets, dirs.components), { extension: '.json' }))
       .pipe(Rogulp.parse(config))
       .pipe(Rogulp.register(config.components))
-      .pipe(gulp.dest(path.resolve(dirs.assets, dirs.components)));
+      .pipe(gulp.dest(path.resolve(dirs.assets, dirs.components)))
+      .pipe(gulp.dest(path.resolve(dirs.src, dirs.pages, dirs.components)));
   });
 
   gulp.task('precompile-pages', function() {
@@ -51,15 +53,13 @@ module.exports = function(gulp, dirs) {
       .clean(false)
       .source('source/pages')
       .destination('dist');
-      console.log('00')
 
-    metalfile(ms, gulp, function() {
-      console.log('aa')
-      ms.build(function(err) {
+    metalfile(ms);
+
+    ms.build(function(err) {
       console.log('bb')
-        if (err) throw err;
-        done(err);
-      });
+      if (err) throw err;
+      done(err);
     });
   });
 

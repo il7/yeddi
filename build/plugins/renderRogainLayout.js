@@ -1,16 +1,17 @@
 'use strict';
 
-const match = require('minimatch');
-const parallel = require('run-parallel')
-const parser = require('rogain-parser');
 const config = require('../rogain-config');
+const renderToString = require('rogain-render-string');
 
 module.exports = function RenderRogainLayout(files, meta, done) {
   Object.keys(files).map(fname => {
     let meta = files[fname];
     if (meta.layout) {
-      var Layout = config.components.get(meta.layout);
-      meta.contents = new Buffer(renderToString(Layout, meta, config));
+      meta.contents = meta.contents.toString();
+      var Layout = config.components.get(meta.layout.split('.')[0]);
+      // console.log(meta)
+      meta.contents = renderToString(Layout, meta, config);
+
     }
   });
 

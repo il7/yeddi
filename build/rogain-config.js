@@ -1,3 +1,7 @@
 const Config = require('rogain-config');
 
-module.exports = new Config(require('rogain-core-bundle'));
+var config = new Config();
+
+config.components.register(require('rogain-core-bundle').components)
+
+module.exports = config;
