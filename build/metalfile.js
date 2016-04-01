@@ -104,7 +104,7 @@ var ArchiveIndexMetadata = filemetadata([{
 
 var Collections = collections({
   articles: 'articles/**/*',
-  repos: 'open-source/**/*'
+  // projects: 'open-source/**/*'
 });
 
 var Pagination = pagination({
@@ -120,15 +120,15 @@ var Pagination = pagination({
     }
   },
 
-  'collections.repos': {
-    perPage: 7,
-    layout: 'PageArchive',
-    first: 'open-source/index.html',
-    path: 'open-source/page/:num.html',
-    pageMetadata: {
-      title: 'Open Source Code',
-      perPage: 7,
-      parent: 'index.html'
-    }
-  }
+  // 'collections.projects': {
+  //   perPage: 7,
+  //   layout: 'PageArchive',
+  //   first: 'open-source/index.html',
+  //   path: 'open-source/page/:num.html',
+  //   pageMetadata: {
+  //     title: 'Open Source Code',
+  //     perPage: 7,
+  //     parent: 'index.html'
+  //   }
+  // }
 });

@@ -1,32 +1,28 @@
 <LayoutRoot page-title={title} bodyClass="p-archive p--{slug}">
   <LayoutPage>
-    <Strata tagName="main" id="content">
-      <Wrapper class="rhythm">
-        <Heading class="p-archive-heading" tagName="h1">{title}</Heading>
-        
-        <Range data={pagination.page} min="1">
-          <p class="p-archive-meta">Page {pagination.page}</p>
-        </Range>
-        
-        <List class="p-archive-list">
-          <Each data={pagination.collection} as="article">
-            <ListItem class="p-archive-item" data-id={article.slug}>
-              <Heading tagName="h2"><a href={article.path}>{article.title}</a></Heading>
-              <p>{article.excerpt}</p>
-            </ListItem>
-          </Each>
-        </List>
+    <Heading class="p-archive-heading" tagName="h1">{title}</Heading>
+    
+    <Range data={pagination.index} min="1">
+      <p class="p-archive-meta">Page {pagination.num}</p>
+    </Range>
+    
+    <List class="p-archive-list">
+      <Each data={pagination.files} as="article">
+        <ListItem class="p-archive-item" data-id={article.slug}>
+          <Heading tagName="h2"><a href="/{article.path}">{article.title}</a></Heading>
+          <p>{article.excerpt}</p>
+        </ListItem>
+      </Each>
+    </List>
 
-        <Pagination class="p-archive-pagination">
-          <Defined data={pagination.prev}>
-            <PaginationPrev href={pagination.prev} />
-          </Defined>
+    <Pagination class="p-archive-pagination">
+      <Defined data={pagination.prev}>
+        <PaginationPrev href={pagination.prev} />
+      </Defined>
 
-          <Defined data={pagination.next}>
-            <PaginationNext href={pagination.next} />
-          </Defined>        
-        </Pagination>>
-      </Wrapper>
-    </Strata>
+      <Defined data={pagination.next}>
+        <PaginationNext href={pagination.next} />
+      </Defined>        
+    </Pagination>
   </LayoutPage>
 </LayoutRoot>
