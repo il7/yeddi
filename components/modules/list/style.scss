@@ -1,6 +1,14 @@
 .list { }
 .list-item { }
 
-.list--unordered { }
-.list--ordered { }
-.list--inline > li { display: inline-block; }
+.list--unordered {
+  list-style: inside square;
+}
+
+.list--ordered {
+  list-style: inside decimal;
+}
+
+.list--inline > li { 
+  display: inline-block;
+}

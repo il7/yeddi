@@ -11,7 +11,11 @@
   p, blockquote { @extend .textblock; }
   blockquote { @extend .textblock--blockquote; }
 
-  ul, ol { @extend .list; }
+  ul, ol { 
+    @extend .list;
+    @extend .rhythm-small;
+  }
+  
   ul { @extend .list--unordered; }
   ol { @extend .list--ordered; }
 

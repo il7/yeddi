@@ -1,5 +1,9 @@
 <LayoutRoot page-title={title} bodyClass="p-article p--{slug}">
   <LayoutPage>
-    {contents}
+    <Strata tagName="main" id="content">
+      <Wrapper class="content">
+        {contents}
+      </Wrapper>
+    </Strata>
   </LayoutPage>
 </LayoutRoot>

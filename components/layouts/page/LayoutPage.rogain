@@ -1,11 +1,5 @@
 <div class="l-page">
   <LayoutMast />
-
-  <Strata tagName="main" id="content">
-    <Wrapper class="content">
-      <Children />
-    </Wrapper>
-  </Strata>
-  
+  <Children />
   <LayoutFooter />
 </div>

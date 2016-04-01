@@ -7,7 +7,7 @@ var hierarchy = require('metalsmith-hierarchy');
 var filemetadata = require('metalsmith-filemetadata');
 var collections = require('metalsmith-collections');
 var rewrite = require('metalsmith-rewrite');
-var slug = require('metalsmith-slug');
+var slug = require('slug');
 var pagination = require('metalsmith-pagination');
 var permalinks = require('metalsmith-permalinks');
 var externalLinks = require('metalsmith-external-links')
@@ -35,15 +35,19 @@ module.exports = function use(ms) {
     .use(Pagination)
     .use(ArchiveIndexMetadata)
     .use(Hierarchy)
-    .use(collections())
+    .use(collections({
+      'mainMenu': {
+        sortBy: 'menuOrder'
+      }
+    }))
     .use(Permalinks)
-    .use(Slugs)
     .use(function(files, metal, done) {
       Object.keys(files).forEach(function(name) {
         var file = files[name];
-        // console.log(file)
-      })
-      done()
+        file.slug = slug(file.title, { lower: true });
+      });
+
+      done();
     })
     .use(RenderInPlace)
     .use(RenderLayouts)
@@ -93,13 +97,13 @@ var DefaultMetadata = filemetadata([{
 
 var ArchiveIndexMetadata = filemetadata([{
   pattern: 'articles/index.html', 
-  metadata: { collection: 'mainMenu' }
+  metadata: { collection: 'mainMenu', menuOrder: 0 }
 }, {
   pattern: 'open-source/index.html',
-  metadata: { collection: 'mainMenu' }
+  metadata: { collection: 'mainMenu', menuOrder: 1 }
 }, {
   pattern: 'contribute/index.html',
-  metadata: { collection: 'mainMenu' }
+  metadata: { collection: 'mainMenu', menuOrder: 2 }
 }]);
 
 var Collections = collections({
