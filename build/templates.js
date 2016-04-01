@@ -5,6 +5,7 @@ const rename = require('gulp-rename');
 const changed = require('gulp-changed');
 const flatten = require('gulp-flatten');
 const sequence = require('run-sequence');
+const frontMatter = require('gulp-front-matter');
 
 // template plugins
 const Metalsmith = require('metalsmith');
@@ -12,12 +13,11 @@ const Rogulp = require('rogulp');
 const through = require('through2');
 const prettify = require('gulp-prettify');
 
-var config = require('./rogain-config.js');
-var metalfile = require('./metalfile.js');
+const config = require('./rogain-config.js');
+const metalfile = require('./metalfile.js');
 
 module.exports = function(gulp, dirs) {
   gulp.task('precompile-components', function() {
-    console.log(path.resolve(dirs.src, dirs.pages, dirs.components))
     return gulp.src(path.resolve(dirs.components, '**/*.rogain'))
       .pipe(flatten())
       .pipe(changed(path.resolve(dirs.assets, dirs.components), { extension: '.json' }))
@@ -29,6 +29,7 @@ module.exports = function(gulp, dirs) {
   gulp.task('precompile-pages', function() {
     return gulp.src(path.resolve(dirs.src, dirs.pages, '**/*.rogain'))
       .pipe(changed(path.resolve(dirs.assets, dirs.pages), { extension: '.json' }))
+      .pipe(frontMatter({ remove: true }))
       .pipe(Rogulp.parse(config)) 
       .pipe(gulp.dest(path.resolve(dirs.assets, dirs.pages)));
   });
@@ -56,7 +57,6 @@ module.exports = function(gulp, dirs) {
     metalfile(ms);
 
     ms.build(function(err) {
-      console.log('bb')
       if (err) throw err;
       done(err);
     });

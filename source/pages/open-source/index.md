@@ -1,6 +1,6 @@
 ---
 title: Open Source
-layout: PageArticle.rogain
+layout: PageArticle
 ---
 
 # Open Source Code

@@ -1,3 +1,7 @@
-<LayoutRoot page-title="IL7" page-resource="/">
+---
+title: IL7
+---
+
+<LayoutRoot>
   <LayoutMast />
 </LayoutRoot>

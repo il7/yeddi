@@ -1,6 +1,6 @@
 ---
 title: Contribute
-layout: PageArticle.rogain
+layout: PageArticle
 parent: index.html
 ---
 

@@ -1,4 +1,8 @@
-<LayoutRoot page-title="Search" page-resource="/search" bodyClass="l-root--dark p-search">
+---
+title: Search
+---
+
+<LayoutRoot page-resource="/search" bodyClass="l-root--dark p-search">
   <LayoutMast />
   <LayoutSearch class="p-search-content" />
 </LayoutRoot>

@@ -4,14 +4,18 @@ const config = require('../rogain-config');
 const renderToString = require('rogain-render-string');
 
 module.exports = function RenderRogainLayout(files, metal, done) {
-  Object.keys(files).map(fname => {
-    let meta = files[fname];
-    if (meta.layout) {
-      meta.contents = meta.contents.toString();
-      var Layout = config.components.get(meta.layout.split('.')[0]);
-      var data = Object.assign({}, meta, metal.metadata());
+  let metadata = metal.metadata();
+  
+  Object.keys(files).forEach(fname => {
+    let file = files[fname];
 
-      meta.contents = renderToString(Layout, data, config);
+    if (file.layout) {
+      let Layout = config.components.get(file.layout);
+      let data = Object.assign({}, metadata, file, { 
+        contents: file.contents.toString()
+      });
+
+      file.contents = renderToString(Layout, data, config);
     }
   });
 

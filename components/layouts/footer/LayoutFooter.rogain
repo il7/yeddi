@@ -1,7 +1,7 @@
 <Strata tagName="header" class="l-footer">
   <Wrapper>
     <nav class="l-footer-nav">
-      <Menu items={mainMenu} />
+      <Menu items={collections.mainMenu} />
     </nav>
   </Wrapper>
 </Strata>

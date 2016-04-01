@@ -7,23 +7,21 @@ const renderToString = require('rogain-render-string');
 const Parser = require('rogain-parser');
 const parser = new Parser();
 
-module.exports = function RenderRogainInPlace(files, meta, done) {
-  var tasks = Object.keys(files).map(function(fname) {
-    return function(d) {
-      let meta = files[fname];
+module.exports = function RenderRogainInPlace(files, metal, done) {
+  let metadata = metal.metadata();
+  let tasks = Object.keys(files).map(fname => (function(d) {
+    if (match(fname, '**/*.rogain')) {
+      let file = files[fname];
+      let data = Object.assign({}, metadata, file);
 
-      if (match(fname, '**/*.rogain')) {
-        parser.parse(meta.contents.toString(), tree => {
-          meta.contents = renderToString(tree, meta, config);
-          d(null);
-        });
-      } else {
+      parser.parse(file.contents.toString(), tree => {
+        file.contents = renderToString(tree, data, config);
         d(null);
-      }
+      });
+    } else {
+      d(null);
     }
-  });
+  }));
 
-  parallel(tasks, function(err, arr) {
-    done()
-  })
+  parallel(tasks, err => done(err));
 }
