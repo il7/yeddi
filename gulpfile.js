@@ -22,7 +22,7 @@ gulp.task('watch', function () {
   gulp.watch('source/**/*.scss', ['styles']);
   gulp.watch('components/**/*.scss', ['styles']);
   
-  gulp.watch('source/**/*', ['pages']);
+  gulp.watch('source/pages/**/*', ['pages']);
   gulp.watch('components/**/*.rogain', ['templates']);
 });
  

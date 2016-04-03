@@ -1,5 +1,5 @@
 <div class="l-page">
-  <LayoutMast />
+  <LayoutMastBreadcrumb />
   <Children />
   <LayoutFooter />
 </div>

@@ -1,9 +1,9 @@
 ---
-title: Open Source
+title: Rogain
 layout: PageArticle
 ---
 
-# Open Source Code
+# A templating language that focuses on composability
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, repellendus. Quibusdam cumque qui tempora, quaerat odit asperiores culpa maxime facilis autem! In nisi accusamus modi excepturi eos ab quo magni possimus porro nihil incidunt, nesciunt delectus illo eaque est eligendi pariatur similique deserunt iste aut quaerat cupiditate molestias.
 

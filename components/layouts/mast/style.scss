@@ -1,20 +1,76 @@
 .l-mast { }
 
-.l-mast-logo { }
+.l-mast-logo {
+  a { display: inline-block; }
 
-.l-mast-nav {
-  margin-top: size(space);
+  .logo {
+    max-width: scale(1.5, column);
+    max-height: scale(1.5, column);
+  }
 }
 
-@include media-above(default) {
-  .l-mast-logo,
-  .l-mast-nav {
-    display: inline-block;
-    vertical-align: middle;
+.l-mast-nav { margin-top: scale(1, space); }
+.l-mast-breadcrumb { margin-top: scale(0.5, space); }
+
+.l-mast--toplevel { }
+
+
+.l-mast--breadcrumb {
+  padding-top: scale(0.5, space);
+  padding-bottom: scale(0.5, space);
+  
+  background-color: color(dark);
+  color: color(light);
+  font-weight: weight(normal);
+
+  .logo {
+    position: relative;
+    overflow: hidden;
+
+    max-width: scale(0.5, column);
+    max-height: scale(0.5, column);
+
+    svg {
+      position: absolute;
+      top: -25%;
+      left: -25%;
+      width: 150%;
+      height: 150%;
+    }
   }
 
+  a {
+    color: color(light);
+    text-decoration: none;
+  }
+
+  & + .strata {
+    padding-top: scale(1.5, space);
+  }
+
+  @include media-above(narrow) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    & + .strata {
+      padding-top: scale(1.5, space) + scale(4, space);
+    }
+  }
+}
+
+
+@include media-above(tiny) {
+  .l-mast-logo,
+  .l-mast-nav,
+  .l-mast-breadcrumb {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: size(space);
+  }
+
+  .l-mast-breadcrumb,
   .l-mast-nav {
     margin-top: 0;
-    margin-left: size(space);
   }
 }

@@ -10,45 +10,27 @@ var rewrite = require('metalsmith-rewrite');
 var slug = require('slug');
 var pagination = require('metalsmith-pagination');
 var permalinks = require('metalsmith-permalinks');
-var externalLinks = require('metalsmith-external-links')
+var externalLinks = require('metalsmith-external-links');
+var changed = require('metalsmith-changed');
+var excerpts = require('metalsmith-better-excerpts');
 
-var match = require('minimatch');
 var config = require('./rogain-config');
 
-module.exports = function use(ms) {
+module.exports = function use(ms, watch) {
   ms.use(IgnoreFiles)
+    .use(RegisterComponents)
+    .use(IgnoreComponents)
     .use(Published)
     .use(Markdown)
-    .use(function(files, metal, done) {
-      Object.keys(files).forEach(function(name) {
-        var file = files[name];
-        if (match(name, 'components/*.json')) {
-          var Name = name.split('/')[1].split('.')[0];
-          config.components.register(Name, JSON.parse(file.contents.toString()));
-        }
-      });
-      done();
-    })
-    .use(IgnoreComponents)
+    .use(Excerpts)
     .use(DefaultMetadata)
     .use(Collections)
     .use(Pagination)
     .use(ArchiveIndexMetadata)
     .use(Hierarchy)
-    .use(collections({
-      'mainMenu': {
-        sortBy: 'menuOrder'
-      }
-    }))
+    .use(MainMenuCollection)
     .use(Permalinks)
-    .use(function(files, metal, done) {
-      Object.keys(files).forEach(function(name) {
-        var file = files[name];
-        file.slug = slug(file.title, { lower: true });
-      });
-
-      done();
-    })
+    .use(Slug)
     .use(RenderInPlace)
     .use(RenderLayouts)
     .use(Rewrite)
@@ -57,6 +39,7 @@ module.exports = function use(ms) {
 // Plugins
 var RenderInPlace = require('./plugins/renderRogainInPlace');
 var RenderLayouts = require('./plugins/renderRogainLayout');
+var RegisterComponents = require('./plugins/registerRogainComponents.js');
 
 var IgnoreFiles = ignore([ '**/.DS_Store' ]);
 var IgnoreComponents = ignore([ 'components/**' ]);
@@ -66,32 +49,53 @@ var Headings = headingsIdentifier();
 var Hierarchy = hierarchy();
 var ExLinks = externalLinks({ domain: "il7.io" });
 
-var Rewrite = rewrite({
-  pattern: '**/*.rogain',
-  filename: '{path.dir}/{path.name}.html'
+var Excerpts = excerpts({
+  stripTags: true,
+  pruneLength: 200,
+  pruneString: '…'
+})
+
+var HasChanged = changed({ 
+  extnames: {
+    '.md': '/index.html',
+    '.rogain': '/index.html'
+  }
 });
+
+var Rewrite = rewrite([
+  {
+    pattern: '**/*.rogain',
+    filename: '{path.dir}/{path.name}.html'
+  }, {
+    pattern: ['**', '!**/index.html'],
+    filename: '{path.dir}/{path.name}/index.html'
+  }
+]);
 
 var Permalinks = permalinks({
   relative: false
 });
 
-var Slugs = slug({ 
-  patterns: ['**/*', '!components/**/*'],
-  property: 'title',
-  lower: true
-});
+var Slug = function(files, metal, done) {
+  Object.keys(files).forEach(function(name) {
+    var file = files[name];
+    file.slug = slug(file.title, { lower: true });
+  });
+
+  done();
+};
 
 var DefaultMetadata = filemetadata([{
   pattern: 'articles/**/*', 
   metadata: {
     layout: 'PageArticle',
-    parent: 'index.html'
+    parent: 'articles/index.html'
   }
 }, {
   pattern: 'open-source/**/*', 
   metadata: {
     layout: 'PageArticle',
-    parent: 'index.html'
+    parent: 'open-source/index.html'
   }
 }]);
 
@@ -107,32 +111,42 @@ var ArchiveIndexMetadata = filemetadata([{
 }]);
 
 var Collections = collections({
-  articles: 'articles/**/*',
-  // projects: 'open-source/**/*'
+  articles: {
+    pattern: 'articles/**/*',
+    sortBy: 'date'
+  },
+  projects: {
+    pattern: 'open-source/**/*',
+    sortBy: 'date'
+  }
 });
+
+var MainMenuCollection = collections({
+  'mainMenu': {
+    sortBy: 'menuOrder'
+  }
+})
 
 var Pagination = pagination({
   'collections.articles': {
-    perPage: 7,
+    perPage: 3,
     layout: 'PageArchive',
     first: 'articles/index.html',
-    path: 'articles/page-:num/index.html',
+    path: 'articles/:num.html',
     pageMetadata: {
       title: 'Articles',
-      perPage: 7,
       parent: 'index.html'
     }
   },
 
-  // 'collections.projects': {
-  //   perPage: 7,
-  //   layout: 'PageArchive',
-  //   first: 'open-source/index.html',
-  //   path: 'open-source/page/:num.html',
-  //   pageMetadata: {
-  //     title: 'Open Source Code',
-  //     perPage: 7,
-  //     parent: 'index.html'
-  //   }
-  // }
+  'collections.projects': {
+    perPage: 3,
+    layout: 'PageArchive',
+    first: 'open-source/index.html',
+    path: 'open-source/:num.html',
+    pageMetadata: {
+      title: 'Open Source',
+      parent: 'index.html'
+    }
+  }
 });

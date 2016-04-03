@@ -1,4 +1,4 @@
 <a class="pagination-next" href={@attrs.href}>
   <span>Next</span>
-  <Icon name="arrow-right" />
+  <Icon name="chevron-right" />
 </a>

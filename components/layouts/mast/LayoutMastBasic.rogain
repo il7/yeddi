@@ -1,0 +1,5 @@
+<LayoutMast class="l-mast--toplevel">
+  <nav class="l-mast-nav">
+    <Menu items={collections.mainMenu} />
+  </nav>
+</LayoutMast>

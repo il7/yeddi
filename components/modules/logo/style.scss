@@ -1,14 +1,11 @@
 .logo {
   display: inline-block;
-  width: 100vw;
-  height: 100vw;
 
-  max-width: scale(1.5, column);
-  max-height: scale(1.5, column);
+  width: scale(1, column);
+  height: scale(1, column);
 
-  background-image: url(svg(logo));
-  background-size: 100%;
-
-  overflow: hidden;
-  text-indent: -1000px;
+  & > * {
+    width: 100%;
+    height: 100%;
+  }
 }

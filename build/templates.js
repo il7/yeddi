@@ -20,7 +20,7 @@ module.exports = function(gulp, dirs) {
   gulp.task('precompile-components', function() {
     return gulp.src(path.resolve(dirs.components, '**/*.rogain'))
       .pipe(flatten())
-      // .pipe(changed(path.resolve(dirs.assets, dirs.components), { extension: '.json' }))
+      .pipe(changed(path.resolve(dirs.assets, dirs.components), { extension: '.json' }))
       .pipe(Rogulp.parse(config))
       .pipe(gulp.dest(path.resolve(dirs.assets, dirs.components)))
       .pipe(gulp.dest(path.resolve(dirs.src, dirs.pages, dirs.components)));

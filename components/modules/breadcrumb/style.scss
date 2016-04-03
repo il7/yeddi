@@ -1,0 +1,11 @@
+.breadcrumb {
+  a:hover { text-decoration: underline; }
+
+  .icon {
+    vertical-align: middle;
+    margin: -0.1em scale(0.25, space) 0 scale(0.25, space);
+    height: 1em;
+
+    fill: color(halflight);
+  }
+}

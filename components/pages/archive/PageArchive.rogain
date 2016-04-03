@@ -1,33 +1,38 @@
 <LayoutRoot page-title={title} bodyClass="p-archive p--{slug}">
-  <LayoutPage>
+  <div class="l-page">
+    <LayoutMastBreadcrumb />
 
     <Strata tagName="main" id="content">
-      <Wrapper class="rhythm">
-        <Heading class="p-archive-heading" tagName="h1">{title}</Heading>
-        
-        <Range data={pagination.index} min="1">
+      <Wrapper class="rhythm-large">
+        <header class="rhythm-small">
+          <Heading class="p-archive-heading" tagName="h1">{title}</Heading>
           <p class="p-archive-meta">Page {pagination.num}</p>
-        </Range>
+        </header>
         
-        <List class="p-archive-list">
+        <List class="p-archive-list rhythm-large">
           <Each data={pagination.files} as="article">
-            <ListItem class="p-archive-item" data-id={article.slug}>
+            <ListItem class="p-archive-item rhythm-small" data-id={article.slug}>
               <Heading tagName="h2"><a href="/{article.path}">{article.title}</a></Heading>
+              <Defined data={article.date}>
+                <div><FormatDate date={article.date} format="mmmm dS, yyyy" /></div>
+              </Defined>
               <p>{article.excerpt}</p>
             </ListItem>
           </Each>
         </List>
 
         <Pagination class="p-archive-pagination">
-          <Defined data={pagination.prev}>
-            <PaginationPrev href={pagination.prev} />
+          <Defined data={pagination.previous.path}>
+            <PaginationPrev href="/{pagination.previous.path}" />
           </Defined>
 
-          <Defined data={pagination.next}>
-            <PaginationNext href={pagination.next} />
-          </Defined>        
+          <Defined data={pagination.next.path}>
+            <PaginationNext href="/{pagination.next.path}" />
+          </Defined>
         </Pagination>
       </Wrapper>
     </Strata>
-  </LayoutPage>
+
+    <LayoutFooter />
+  </div>
 </LayoutRoot>

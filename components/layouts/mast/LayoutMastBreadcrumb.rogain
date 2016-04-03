@@ -1,0 +1,5 @@
+<LayoutMast class="l-mast--breadcrumb">
+  <nav class="l-mast-breadcrumb">
+    <Breadcrumb data={hierarchy} />
+  </nav>
+</LayoutMast>

@@ -26,10 +26,9 @@
     </Defined>
   </head>
   <body class={@attrs.bodyClass}>
-
-  <Children />
-
-  <script src="/assets/bundle.js"></script>
+    <IconDefs />
+    <Children />
+    <script src="/assets/bundle.js"></script>
   </body>
   </html>
 </Frame>

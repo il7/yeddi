@@ -1,11 +1,9 @@
-<Strata tagName="header" class="l-mast">
+<Strata tagName="header" class="l-mast rhythm">
   <Wrapper>
     <div class="l-mast-logo">
       <a href="/"><Logo /></a>
     </div>
 
-    <nav class="l-mast-nav">
-      <Menu items={collections.mainMenu} />
-    </nav>
+    <Children />
   </Wrapper>
 </Strata>

@@ -3,5 +3,5 @@ title: IL7
 ---
 
 <LayoutRoot>
-  <LayoutMast />
+  <LayoutMastBasic />
 </LayoutRoot>

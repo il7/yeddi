@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-logo" viewBox="0 0 256 256">
+    <title>IL7</title>
+    <path id="icon-logo-bg" fill="#292623" d="M0,0h256v256H0V0z" />
+    <path id="icon-logo-i" fill="#EF5750" d="M80.3,88l-11,80h14.2l11.1-80H80.3z" />
+    <path id="icon-logo-l" fill="#F2CA15" d="M114,153.7l9.1-65.7h-14.3l-10.9,80h49.5l2-14.3H114z" />
+    <path id="icon-logo-7" fill="#4FBD96" d="M137.2,88l-2,14.3h35.4l-9.1,65.7h14.3l10.9-80H137.2z" />  
+  </symbol>
+
+  <symbol id="icon-loader" viewBox="0 0 96 96">
+    <title>Loading...</title>
+    <path d="M21.8,72.8C8.8,59,8.7,36.4,22.5,22.6c14.1-14.1,36.9-14.1,50.9,0C87.3,36.4,87.2,59,74.1,72.8l8.5,8.5c18-18.8,17.8-48.7-0.7-67.2C63.2-4.7,32.8-4.7,14,14.1C-4.5,32.6-4.7,62.5,13.4,81.3L21.8,72.8z" />
+  </symbol>
+
+  <symbol id="icon-lens" viewBox="0 0 96 96">
+    <title>Magnifying Lens</title>
+    <path fill="#292623" d="M65.3,11.2c-14.9-14.9-39.1-14.9-54.1,0c-14.9,14.9-14.9,39.1,0,54.1C23.9,78,43.3,79.8,58,70.9l22.4,22.4 c3.6,3.6,9.4,3.6,12.9,0c3.6-3.6,3.6-9.4,0-12.9L70.9,58C79.8,43.3,78,23.9,65.3,11.2z M55,55c-9.3,9.3-24.3,9.3-33.6,0 c-9.3-9.3-9.3-24.3,0-33.6c9.3-9.3,24.3-9.3,33.6,0C64.3,30.7,64.3,45.7,55,55z" />
+  </symbol>
+
+  <symbol id="icon-chevron-left" viewBox="0 0 50.9 96">
+    <title>Arrow Left</title>
+    <path d="M0,48L36,0l14.9,6.8L20,48l30.8,41.1L36,95.9V96L0,48z" />
+  </symbol>
+
+  <symbol id="icon-chevron-right" viewBox="0 0 50.9 96">
+    <title>Arrow Right</title>
+    <path d="M14.9,96L14.9,96L0,89.1L30.9,48L0,6.8L14.9,0l36,48L14.9,96z" />
+  </symbol>
+</svg>
