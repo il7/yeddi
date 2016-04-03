@@ -1,5 +1,5 @@
 .input {
-  padding: scale(0.25, space) scale(0.5, space);
+  padding: size(space, 0.25) size(space, 0.5);
   
   background-color: transparent;
   color: color(light);
@@ -8,7 +8,7 @@
   border-bottom: 2px solid color(mid);
 
   font-family: fontstack(sans);
-  font-size: scale(0.75, base);
+  font-size: size(base, 0.75);
 
   &:focus {
     background-color: rgba(color(light), 0.05);
@@ -29,7 +29,7 @@
 .input--button {}
 
 .input--large {
-  padding: scale(0.75, space) scale(1, space);
+  padding: size(space, 0.75) size(space, 1);
 
   @extend h3.heading;
 }

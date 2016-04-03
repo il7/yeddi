@@ -3,9 +3,14 @@
 
   .icon {
     vertical-align: middle;
-    margin: -0.1em scale(0.25, space) 0 scale(0.25, space);
-    height: 1em;
+    margin: 0 size(space, 0.15);
+    height: 0.5em;
 
-    fill: color(halflight);
+    fill: color(halfdark);
+  }
+
+  @include media-below(narrow) {
+    svg:first-of-type { display: none; }
+    a:first-of-type { display: none; }
   }
 }

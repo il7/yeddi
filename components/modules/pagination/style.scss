@@ -1,15 +1,14 @@
 .pagination {
   overflow: hidden;
-  // max-width: width(narrow);
 
-  padding: scale(0.5, space);
-  background-color: color(halfdark);
+  & > * + * {
+    margin-left: size(space, 2);
+  }
 }
 
 .pagination-prev,
 .pagination-next {
-  color: color(light); 
-  fill: color(light); 
+  float: left;
   text-decoration: none; 
 
   &:hover { text-decoration: underline; }
@@ -22,15 +21,5 @@
 }
 
 .pagination-prev {
-  float: left;
   direction: rtl;
-
-  // span { margin-left: scale(0.5, space); }
 }
-
-.pagination-next {
-  float: right;
-  
-  // span { margin-right: scale(0.5, space); }
-}
-

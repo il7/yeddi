@@ -3,3 +3,7 @@ $easings: (
   enter: ease-in,
   exit: ease-out
 );
+
+@function easing($name) {
+  @return #{map-get($easings, $name)};  
+}

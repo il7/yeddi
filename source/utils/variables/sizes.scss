@@ -1,10 +1,19 @@
 $sizes: (
   default: 1em,
   base: 120%,
-  hbase: 175%,
+  hbase: 150%,
   line: 1.55em,
   space: 1em,
   rhythm: 1em,
   gutter: 2em,
   column: 4em
 );
+
+@function size($name, $scale: 1) {
+  @if map-has-key($sizes, $name) {
+    @return map-get($sizes, $name) * $scale;  
+  } @else {
+    @warn "`#{$name}` is not defined in $sizes";
+    @return null;
+  }
+}

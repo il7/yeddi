@@ -4,58 +4,60 @@
   a { display: inline-block; }
 
   .logo {
-    max-width: scale(1.5, column);
-    max-height: scale(1.5, column);
+    width: size(column, 1.5);
+    height: size(column, 1.5);
   }
 }
 
-.l-mast-nav { margin-top: scale(1, space); }
-.l-mast-breadcrumb { margin-top: scale(0.5, space); }
+.l-mast-nav { margin-top: size(space, 1); }
+.l-mast-breadcrumb { margin-top: size(space, 0.5); }
 
 .l-mast--toplevel { }
 
 
 .l-mast--breadcrumb {
-  padding-top: scale(0.5, space);
-  padding-bottom: scale(0.5, space);
+  padding-top: size(space, 0.5);
+  padding-bottom: size(space, 0.5);
   
   background-color: color(dark);
   color: color(light);
+
   font-weight: weight(normal);
 
   .logo {
     position: relative;
     overflow: hidden;
 
-    max-width: scale(0.5, column);
-    max-height: scale(0.5, column);
+    width: size(column, 0.5);
+    height: size(column, 0.5);
 
     svg {
-      position: absolute;
-      top: -25%;
-      left: -25%;
-      width: 150%;
-      height: 150%;
+      transform: scaleX(2) scaleY(2);
     }
   }
 
   a {
     color: color(light);
     text-decoration: none;
+    font-size: 80%;
   }
 
   & + .strata {
-    padding-top: scale(1.5, space);
+    padding-top: size(space, 1);
   }
 
   @include media-above(narrow) {
     position: fixed;
     top: 0;
     width: 100%;
+  }
 
-    & + .strata {
-      padding-top: scale(1.5, space) + scale(4, space);
-    }
+  @include media-between(narrow, default) {
+    & + .strata { padding-top: size(space, 4); }
+  }
+
+  @include media-above(default) {
+    & + .strata { padding-top: size(space, 4.5); }
   }
 }
 
@@ -66,11 +68,14 @@
   .l-mast-breadcrumb {
     display: inline-block;
     vertical-align: middle;
-    margin-right: size(space);
   }
 
   .l-mast-breadcrumb,
   .l-mast-nav {
     margin-top: 0;
+  }
+
+  .l-mast-nav {
+    margin-left: size(space);
   }
 }

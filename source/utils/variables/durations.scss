@@ -4,3 +4,7 @@ $durations: (
   medium: 0.7s,
   slow: 1s
 );
+
+@function duration($name) {
+  @return #{map-get($durations, $name)};  
+}

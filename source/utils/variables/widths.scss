@@ -1,8 +1,12 @@
 $widths: (
-  huge: scale(count(huge), column),
-  wide: scale(count(wide), column),
-  default: scale(count(default), column),
-  text: scale(count(text), column),
-  narrow: scale(count(narrow), column),
-  tiny: scale(count(tiny), column) 
+  huge: size(column, 24),
+  wide: size(column, 18),
+  default: size(column, 12),
+  text: size(column, 8),
+  narrow: size(column, 8),
+  tiny: size(column, 5) 
 );
+
+@function width($name) {
+  @return map-get($widths, $name);  
+}

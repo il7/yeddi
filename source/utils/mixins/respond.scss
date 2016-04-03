@@ -9,17 +9,17 @@
   }
 }
 
-@mixin respond-between($min: null, $max: null, $media: screen) {
+@mixin respond-between($min, $max, $media: screen) {
   $query: "only " + $media + " and (min-width: " + $min + ") and (max-width: " + $max + ")";
   @media #{$query} { @content; };
 }
 
-@mixin respond-below($max: null, $media: screen) {
+@mixin respond-below($max, $media: screen) {
   $query: "only " + $media + " and (max-width: " + $max + ")";
   @media #{$query} { @content; };
 }
 
-@mixin respond-above($min: null, $media: screen) {
+@mixin respond-above($min, $media: screen) {
   $query: "only " + $media + " and (min-width: " + $min + ")";
   @media #{$query} { @content; };
 }

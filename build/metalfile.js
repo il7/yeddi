@@ -113,7 +113,8 @@ var ArchiveIndexMetadata = filemetadata([{
 var Collections = collections({
   articles: {
     pattern: 'articles/**/*',
-    sortBy: 'date'
+    sortBy: 'date',
+    reverse: true
   },
   projects: {
     pattern: 'open-source/**/*',
@@ -129,7 +130,7 @@ var MainMenuCollection = collections({
 
 var Pagination = pagination({
   'collections.articles': {
-    perPage: 3,
+    perPage: 2,
     layout: 'PageArchive',
     first: 'articles/index.html',
     path: 'articles/:num.html',
@@ -140,7 +141,7 @@ var Pagination = pagination({
   },
 
   'collections.projects': {
-    perPage: 3,
+    perPage: 2,
     layout: 'PageArchive',
     first: 'open-source/index.html',
     path: 'open-source/:num.html',

@@ -9,7 +9,7 @@ html, body {
 
   font-family: fontstack(sans);
   font-weight: weight(default);
-  font-size: size(base); // eq to scale(1, base) 
+  font-size: size(base); // eq to size(base, 1) 
   line-height: size(line);
 
   -webkit-tap-highlight-color: transparent;
@@ -18,22 +18,22 @@ html, body {
 
 body { 
   @include media-below(tiny) {
-    font-size: scale(0.5, base);
+    font-size: size(base, 0.5);
   }
 
   @include media-between(tiny, narrow) {
-    font-size: scale(0.8, base);
+    font-size: size(base, 0.8);
   }
 
   @include media-between(narrow, default) {
-    font-size: scale(0.9, base);
+    font-size: size(base, 0.9);
   }
 
   @include media-between(wide, huge) {
-    font-size: scale(1.1, base);
+    font-size: size(base, 1.1);
   }
 
   @include media-above(huge) {
-    font-size: scale(1.3, base);
+    font-size: size(base, 1.3);
   }
 }

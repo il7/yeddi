@@ -1,11 +1,14 @@
 .strata {
   display: block;
-  padding: scale(1.5, space);
+  padding: size(space, 1);
 
   & + & {
     padding-top: 0;
   }
 
+  @include media-above(narrow) {
+    padding: size(space, 1.5);
+  }
 }
 
 .strata--no-padding { padding: 0; }

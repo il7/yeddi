@@ -5,3 +5,7 @@ $fontstacks: (
   sans: $fontstack-sans,
   mono: $fontstack-mono
 );
+
+@function fontstack($name) {
+  @return map-get($fontstacks, $name);
+}

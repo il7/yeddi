@@ -1,17 +1,11 @@
-@mixin media-below($min: text, $target: screen) {
-  @include respond-below(width($min), $target) {
-    @content;
-  }
+@mixin media-below($min, $target: screen) {
+  @include respond-below(width($min), $target) { @content; }
 }
 
-@mixin media-above($max: wide, $target: screen) {
-  @include respond-above(width($max), $target) {
-    @content;
-  }
+@mixin media-above($max, $target: screen) {
+  @include respond-above(width($max), $target) { @content; }
 }
 
-@mixin media-between($min:text, $max: wide, $target: screen) {
-  @include respond-between(width($min), width($max), $target) {
-    @content;
-  }
+@mixin media-between($min, $max, $target: screen) {
+  @include respond-between(width($min), width($max), $target) { @content; }
 }

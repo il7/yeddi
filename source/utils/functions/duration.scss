@@ -1,3 +1,0 @@
-@function duration($name) {
-  @return #{map-get($durations, $name)};  
-}

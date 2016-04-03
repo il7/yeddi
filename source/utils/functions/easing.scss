@@ -1,3 +1,0 @@
-@function easing($name) {
-  @return #{map-get($easings, $name)};  
-}

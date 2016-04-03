@@ -12,3 +12,7 @@ $colors: (
   teal: #4ebd95,
   yellow: #f2ca15,
 );
+
+@function color($name) {
+  @return map-get($colors, $name);  
+}

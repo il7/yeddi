@@ -3,9 +3,9 @@
 }
 
 .rhythm-small > * + * {
-  margin-top: scale(0.5, rhythm);
+  margin-top: size(rhythm, 0.5);
 }
 
 .rhythm-large > * + * {
-  margin-top: scale(1.5, rhythm);
+  margin-top: size(rhythm, 1.5);
 }

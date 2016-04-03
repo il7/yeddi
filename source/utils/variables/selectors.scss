@@ -3,3 +3,7 @@ $selectors: (
   lists: "ol, ul",
   inputs: "textarea, input, button"
 );
+
+@function selector($name) {
+  @return map-get($selectors, $name);  
+}

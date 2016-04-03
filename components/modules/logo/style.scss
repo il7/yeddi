@@ -1,8 +1,8 @@
 .logo {
   display: inline-block;
 
-  width: scale(1, column);
-  height: scale(1, column);
+  width: size(column, 1);
+  height: size(column, 1);
 
   & > * {
     width: 100%;

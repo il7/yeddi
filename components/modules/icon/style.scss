@@ -1,12 +1,9 @@
 .icon {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 
-  height: scale(1.5);
-  width: scale(1.5);
-
-  text-indent: -999em;
-  overflow: hidden;
+  height: size(default, 1.5);
+  width: size(default, 1.5);
 
   & > * {  
     width: 100%;

@@ -5,3 +5,7 @@ $weights: (
   bold: 500,
   heavy: 600
 );
+
+@function weight($name) {
+  @return map-get($weights, $name);  
+}

@@ -1,6 +1,7 @@
 <div class="breadcrumb">
   <Each data={@attrs.data}>
-    <Range data={@index} min="1"><Icon name="chevron-right" /></Range>
+    <Icon name="chevron-right" />
+    <!-- <Range data={@index} min="1"></Range> -->
     <a href="/{@item.path}">{@item.title}</a>
   </Each>
 </div>
