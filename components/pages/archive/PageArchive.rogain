@@ -1,6 +1,6 @@
 <LayoutRoot page-title={title} bodyClass="p-archive p--{slug}">
   <div class="l-page">
-    <LayoutMastBreadcrumb />
+    <LayoutMast />
 
     <Strata tagName="main" id="content">
       <Wrapper class="rhythm-large">

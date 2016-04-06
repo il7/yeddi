@@ -1,7 +1,9 @@
-<List class="menu" aria-role="menu">
+<List class="menu" aria-role="menu">  
   <Each data={@attrs.items}>
-    <ListItem data-id={@index} class="menu--{@item.path}" aria-role="menu-item">
-      <a href="/{@item.path}">{@item.title}</a>
-    </ListItem>
+    <If data={@item.path} value={hierarchy.0.path}>
+      <MenuItem class="is-active" />
+    <Else />
+      <MenuItem />
+    </If>
   </Each>
 </List>

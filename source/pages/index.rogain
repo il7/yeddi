@@ -3,5 +3,25 @@ title: IL7
 ---
 
 <LayoutRoot>
-  <LayoutMastBasic />
+  <Strata>
+    <Wrapper>
+      <div><a href="/"><Logo /></a></div>
+      
+      <br/>
+      
+      <nav>
+        <List class="menu" aria-role="menu">
+          <Each data={collections.mainMenu}>
+            <ListItem data-id={@item.path} class="menu--{@item.path}" aria-role="menu-item">
+              <a href="/{@item.path}">{@item.title}</a>
+            </ListItem>
+          </Each>
+
+          <ListItem data-id="search" class="menu--search" aria-role="menu-item">
+            <a href="/search">Search</a>
+          </ListItem>
+        </List>
+      </nav>
+    </Wrapper>
+  </Strata>
 </LayoutRoot>

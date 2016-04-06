@@ -1,0 +1,3 @@
+<ListItem data-id={@index} class="menu--{@item.path}" aria-role="menu-item">
+  <a href="/{@item.path}">{@item.title}</a>
+</ListItem>

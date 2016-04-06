@@ -1,16 +1,18 @@
 .breadcrumb {
   a:hover { text-decoration: underline; }
 
-  .icon {
+  & > * {
+    display: inline-block;
     vertical-align: middle;
-    margin: 0 size(space, 0.15);
-    height: 0.5em;
-
-    fill: color(halfdark);
   }
+}
 
-  @include media-below(narrow) {
-    svg:first-of-type { display: none; }
-    a:first-of-type { display: none; }
+.breadcrumb-seperator {
+  margin: 0 size(space, 0.15);
+  margin-top: 2px;
+  height: 0.5em;
+
+ .icon {
+     fill: color(halfdark);
   }
 }

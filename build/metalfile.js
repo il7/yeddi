@@ -130,7 +130,7 @@ var MainMenuCollection = collections({
 
 var Pagination = pagination({
   'collections.articles': {
-    perPage: 2,
+    perPage: 7,
     layout: 'PageArchive',
     first: 'articles/index.html',
     path: 'articles/:num.html',
@@ -141,7 +141,7 @@ var Pagination = pagination({
   },
 
   'collections.projects': {
-    perPage: 2,
+    perPage: 7,
     layout: 'PageArchive',
     first: 'open-source/index.html',
     path: 'open-source/:num.html',

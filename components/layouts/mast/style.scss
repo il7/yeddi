@@ -1,21 +1,8 @@
-.l-mast { }
+.l-mast {
+  position: fixed;
+  top: 0;
+  width: 100%;
 
-.l-mast-logo {
-  a { display: inline-block; }
-
-  .logo {
-    width: size(column, 1.5);
-    height: size(column, 1.5);
-  }
-}
-
-.l-mast-nav { margin-top: size(space, 1); }
-.l-mast-breadcrumb { margin-top: size(space, 0.5); }
-
-.l-mast--toplevel { }
-
-
-.l-mast--breadcrumb {
   padding-top: size(space, 0.5);
   padding-bottom: size(space, 0.5);
   
@@ -23,59 +10,86 @@
   color: color(light);
 
   font-weight: weight(normal);
+  white-space: nowrap;
+
+  & + .strata { 
+    padding-top: size(space, 4);
+
+    @include media-between(narrow, default) { padding-top: size(space, 4.5); }
+    @include media-above(default) { padding-top: size(space, 5); }
+  }
+}
+
+.l-mast-logo {
+  display: inline-block;
+  vertical-align: middle;
 
   .logo {
-    position: relative;
     overflow: hidden;
-
     width: size(column, 0.5);
     height: size(column, 0.5);
 
-    svg {
-      transform: scaleX(2) scaleY(2);
+    svg { transform: scaleX(2) scaleY(2); }
+  }
+}
+
+.l-mast-breadcrumb { 
+  display: inline-block;
+  vertical-align: middle;
+
+  a {
+    display: inline-block;
+
+    font-size: 80%;
+    text-decoration: none;
+  }
+
+  .menu {
+    transition-property: max-width, opacity;
+
+    & > li {
+      max-width: 0px;
+      max-height: 0px;
+      opacity: 0;
+
+      transition-property: max-height, max-width, opacity;
+
+      &.is-active { 
+        max-height: 60px;
+        max-width: 140px;
+        opacity: 1;
+      }
+    }
+
+    & ~ * { 
+      color: color(light);
     }
   }
 
-  a {
-    color: color(light);
-    text-decoration: none;
-    font-size: 80%;
-  }
+  svg { transition-property: max-width, opacity; }
 
-  & + .strata {
-    padding-top: size(space, 1);
-  }
-
-  @include media-above(narrow) {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-
-  @include media-between(narrow, default) {
-    & + .strata { padding-top: size(space, 4); }
-  }
-
-  @include media-above(default) {
-    & + .strata { padding-top: size(space, 4.5); }
-  }
+  // @include media-below(narrow) {
+  //   svg:first-of-type,
+  //   .menu { 
+  //     max-width: 0;
+  //     opacity: 0;
+  //   }
+  // }
 }
 
+// .l-mast {
+//   &:hover {
+//     a { color: color(light); }
 
-@include media-above(tiny) {
-  .l-mast-logo,
-  .l-mast-nav,
-  .l-mast-breadcrumb {
-    display: inline-block;
-    vertical-align: middle;
-  }
+//     .menu > li {
+//       opacity: 1;
+//       max-width: 140px;
+//       max-height: 60px;
+//     }
 
-  .l-mast-breadcrumb,
-  .l-mast-nav {
-    margin-top: 0;
-  }
-
-  .l-mast-nav {
-    margin-left: size(space);
-  }
-}
+//     .l-mast-breadcrumb {
+//       svg:first-of-type { max-width: 40px; opacity: 1; }
+//       .menu { max-width: 140px; opacity: 1; }
+//     }
+//   }
+// }

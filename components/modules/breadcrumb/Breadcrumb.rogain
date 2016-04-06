@@ -1,7 +1,12 @@
 <div class="breadcrumb">
+  <Icon name="chevron-right" />
+  
+  <Menu items={collections.mainMenu} />
+  
   <Each data={@attrs.data}>
-    <Icon name="chevron-right" />
-    <!-- <Range data={@index} min="1"></Range> -->
-    <a href="/{@item.path}">{@item.title}</a>
+    <Range data={@index} min="1">
+      <Icon name="chevron-right" />
+      <a href="/{@item.path}">{@item.title}</a>
+    </Range>
   </Each>
 </div>

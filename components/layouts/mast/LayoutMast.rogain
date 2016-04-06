@@ -4,6 +4,16 @@
       <a href="/"><Logo /></a>
     </div>
 
-    <Children />
+    <div class="l-mast-menu">
+      <BreadcrumbSeperator />
+      <Menu items={collections.mainMenu} />
+    </div>
+
+    <Range data={hierarchy.length} min="2">
+      <div class="l-mast-title">
+        <BreadcrumbSeperator />
+        <a href="/{path}">{title}</a>
+      </div>
+    </Range>
   </Wrapper>
 </Strata>
