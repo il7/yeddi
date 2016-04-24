@@ -19,7 +19,7 @@ module.exports = function createBundler(b, opts) {
   function bundle() {
     return b.bundle()
       .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-      .pipe(source(opts.filename))
+      .pipe(source(opts.name))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true })) 
       .pipe(sourcemaps.write('./')) 
