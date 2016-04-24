@@ -33,7 +33,7 @@ module.exports = function use(ms) {
     .use(Slug)
     // .use(RenderInPlace)
     // .use(RenderLayouts)
-    // .use(Rewrite);
+    .use(Rewrite);
 };
 
 // Plugins

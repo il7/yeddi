@@ -21,8 +21,7 @@ require('./build/pages/tasks')(dirs);
 // watchers
 gulp.task('watch', function (done) {
   gulp.watch('source/**/*.scss', ['styles']);
-  gulp.watch('source/pages/**/*', []);
-  gulp.watch('source/components/**/*.rogain', []);
+  gulp.watch('source/pages/**/*', ['pages']);
 
   sequence([
     'watch-script',

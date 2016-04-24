@@ -9,8 +9,8 @@ module.exports = function(dirs) {
       .pipe(gulp.dest(dirs.destAssets));
   });
 
-  // gulp.task('style-guide', function() {
-  //   return styleGuide({ src: dirs.srcComponents })
-  //     .pipe(gulp.dest(dirs.destStyleGuide));
-  // });
+  gulp.task('style-guide', function() {
+    return styleGuide({ src: dirs.srcComponents })
+      .pipe(gulp.dest(dirs.destStyleGuide));
+  });
 };
