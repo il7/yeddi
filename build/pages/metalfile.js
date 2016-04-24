@@ -14,12 +14,12 @@ var externalLinks = require('metalsmith-external-links');
 var changed = require('metalsmith-changed');
 var excerpts = require('metalsmith-better-excerpts');
 
-var config = require('./rogain-config');
+var config;
 
-module.exports = function use(ms, watch) {
+module.exports = function use(ms) {
+  config = require('./rogain-config');
+  
   ms.use(IgnoreFiles)
-    .use(RegisterComponents)
-    .use(IgnoreComponents)
     .use(Published)
     .use(Markdown)
     .use(Excerpts)
@@ -31,18 +31,16 @@ module.exports = function use(ms, watch) {
     .use(MainMenuCollection)
     .use(Permalinks)
     .use(Slug)
-    .use(RenderInPlace)
-    .use(RenderLayouts)
-    .use(Rewrite);
+    // .use(RenderInPlace)
+    // .use(RenderLayouts)
+    // .use(Rewrite);
 };
 
 // Plugins
 var RenderInPlace = require('./plugins/renderRogainInPlace');
 var RenderLayouts = require('./plugins/renderRogainLayout');
-var RegisterComponents = require('./plugins/registerRogainComponents.js');
 
 var IgnoreFiles = ignore([ '**/.DS_Store' ]);
-var IgnoreComponents = ignore([ 'components/**' ]);
 var Published = publish();
 var Markdown = markdown();
 var Headings = headingsIdentifier();

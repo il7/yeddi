@@ -5,6 +5,7 @@ const sequence = require('run-sequence').use(gulp);
 const dirs = {
   src: 'source',
   srcComponents: 'source/components',
+  srcPages: 'source/pages',
   srcAssets: 'source/assets',
   dest: 'dist',
   destStyleGuide: 'dist/styleguide',
@@ -35,7 +36,7 @@ gulp.task('default', function(done) {
     'styles',
     'script',
     'precompile-components'
-  ], done);
+  ], 'pages', done);
 });
 
 gulp.task('develop', function(done) {
