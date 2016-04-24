@@ -1,8 +1,9 @@
-const Config = require('rogain-config');
+const Registry = require('rogain-registry');
+const components = new Registry();
 
-var config = new Config();
+components.register(require('rogain-core-components'));
+components.register(require('../dist/assets/components'));
 
-config.components.register(require('rogain-core-bundle').components)
-config.components.register(require('../components/helpers/_imports'));
-
-module.exports = config;
+module.exports = {
+  components: components
+};

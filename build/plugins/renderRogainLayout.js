@@ -1,6 +1,7 @@
 'use strict';
 
 const config = require('../rogain-config');
+const resolveTree = require('rogain-resolve-tree');
 const renderToString = require('rogain-render-string');
 
 module.exports = function RenderRogainLayout(files, metal, done) {
@@ -14,8 +15,10 @@ module.exports = function RenderRogainLayout(files, metal, done) {
       let data = Object.assign({}, metadata, file, { 
         contents: file.contents.toString()
       });
+      // if (fname ) { console.log(file.layout, data) }
 
-      file.contents = renderToString(Layout, data, config);
+
+      file.contents = renderToString(resolveTree(Layout, data, config));
     }
   });
 

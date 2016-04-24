@@ -1,6 +1,5 @@
 ---
 title: Functional Predicates
-layout: PageArticle
 ---
 
 # Predicate functions for functional programming

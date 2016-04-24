@@ -1,0 +1,12 @@
+<div class="breadcrumb">
+  <Icon name="chevron-right" />
+  
+  <Menu items={collections.mainMenu} />
+  
+  <Each data={@attrs.data}>
+    <If data={@index} gt="1">
+      <Icon name="chevron-right" />
+      <a href="/{@item.path}">{@item.title}</a>
+    </If>
+  </Each>
+</div>

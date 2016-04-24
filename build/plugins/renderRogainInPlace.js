@@ -3,9 +3,9 @@
 const match = require('minimatch');
 const parallel = require('run-parallel')
 const config = require('../rogain-config');
+const resolveTree = require('rogain-resolve-tree');
 const renderToString = require('rogain-render-string');
-const Parser = require('rogain-parser');
-const parser = new Parser();
+const parser = require('rogain-parser');
 
 module.exports = function RenderRogainInPlace(files, metal, done) {
   let metadata = metal.metadata();
@@ -14,10 +14,14 @@ module.exports = function RenderRogainInPlace(files, metal, done) {
       let file = files[fname];
       let data = Object.assign({}, metadata, file);
 
-      parser.parse(file.contents.toString(), tree => {
-        file.contents = renderToString(tree, data, config);
-        d(null);
-      });
+      data.contents = data.contents.toString();
+
+      parser(file.contents.toString())
+        .then(tree => {
+          file.contents = renderToString(resolveTree(tree, data, config));
+          d(null);
+        })
+        .catch(err => d(err));
     } else {
       d(null);
     }

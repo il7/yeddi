@@ -1,6 +1,6 @@
 ---
 title: Contribute
-layout: PageArticle
+layout: LayoutArticle
 parent: index.html
 ---
 

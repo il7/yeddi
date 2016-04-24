@@ -3,39 +3,90 @@ const gulp = require('gulp');
 const sequence = require('run-sequence');
 const path = require('path');
 
+const clean = require('./build/core/clean'); // fe-task-clean
+const copy = require('./build/core/copy'); // fe-task-copy
+
+const styles = require('./build/styles/buildStyles'); // fe-task-styles
+const styleGuide = require('./build/styles/styleGuide'); // fe-task-style-guide
+const precompileTemplates = require('./build/templates/precompile'); // fe-task-precompile-templates
+const compileScript = require('./build/scripts/compile'); // fe-task-compile-script
+const watchScript = require('./build/scripts/watch'); // fe-task-watch-script
+
 const dirs = {
   src: 'source',
+  srcComponents: 'source/components',
+  srcAssets: 'source/assets',
   dest: 'dist',
-  pages: 'pages',
-  assets: 'dist/assets',
-  components: 'components' 
+  destStyleGuide: 'dist/styleguide',
+  destAssets: 'dist/assets'
 };
 
-require('./build/core')(gulp, dirs);
-require('./build/styles')(gulp, dirs);
-require('./build/scripts')(gulp, dirs);
-require('./build/templates')(gulp, dirs);
+// core
+gulp.task('clean', function(done) {
+  clean(dirs.dest, done);
+});
 
-// Task `watch`
-// run various tasks on file changes
+gulp.task('copy-assets', function() {
+  return copy({ src: dirs.srcAssets }).pipe(gulp.dest(dirs.destAssets));
+});
+
+// styles
+gulp.task('styles', function() {
+  return styles({ src: dirs.srcComponents }).pipe(gulp.dest(dirs.destAssets));
+});
+
+gulp.task('style-guide', function() {
+  return styleGuide({ src: dirs.srcComponents }).pipe(gulp.dest(dirs.destStyleGuide));
+});
+
+// scripts
+gulp.task('script', function() {
+  return compileScript({ 
+    src: dirs.srcComponents + '/main.js',
+    dest: dirs.destAssets,
+    filename: 'bundle.js'
+  });
+});
+
+gulp.task('watch-script', function() {
+  watchScript({ 
+    src: dirs.srcComponents + '/main.js',
+    dest: dirs.destAssets,
+    filename: 'bundle.js'
+  })
+});
+
+// templates
+gulp.task('precompile-templates', function() {
+  return compileScript({ 
+    src: dirs.srcComponents + '/components.js',
+    dest: dirs.destAssets,
+    filename: 'components.js'
+  })
+});
+
+gulp.task('watch-templates', function() {
+  watchScript({ 
+    src: dirs.srcComponents + '/components.js',
+    dest: dirs.destAssets,
+    filename: 'components.js'
+  })
+});
+
+// watchers
 gulp.task('watch', function () {
   gulp.watch('source/**/*.scss', ['styles']);
-  gulp.watch('components/**/*.scss', ['styles']);
-  
-  gulp.watch('source/pages/**/*', ['pages']);
-  gulp.watch('components/**/*.rogain', ['templates']);
+  // gulp.watch('source/pages/**/*', ['pages']);
+  // gulp.watch('source/components/**/*.rogain', ['templates']);
+
+  sequence('watch-script', 'watch-templates')
 });
- 
-// Task `compile`
-// Deletes dist folder and builds site from scratch
-gulp.task('compile', function(done) {
-  sequence('clean', ['templates', 'copy-assets', 'styles', 'scripts-compile'], done);
+
+// main tasks
+gulp.task('default', function(done) {
+  sequence('clean', 'copy-assets', ['styles', 'script', 'precompile-templates'], done);
 });
- 
-// Task `develop`
-// Runs `compile` task then watches for file changes
+
 gulp.task('develop', function(done) {
-  sequence(['compile', 'scripts-develop'], 'watch', done);
+  sequence('default', 'watch', done);
 });
- 
-gulp.task('default', ['compile', 'scripts-compile']);

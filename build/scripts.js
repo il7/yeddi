@@ -14,7 +14,7 @@ module.exports = function(gulp, dirs) {
   // compiles app script and optimises files 
   gulp.task('scripts-compile', function() {
     var opts = Object.assign({}, watchify.args, {
-      entries: path.resolve(dirs.src, 'main.js'),
+      entries: path.resolve(dirs.src, dirs.components, 'main.js'),
       debug: true
     });
 
@@ -24,7 +24,7 @@ module.exports = function(gulp, dirs) {
 
   gulp.task('scripts-develop', function() {
     var opts = Object.assign({}, watchify.args, {
-      entries: path.resolve(dirs.src, 'main.js'),
+      entries: path.resolve(dirs.src, dirs.components, 'main.js'),
       debug: true
     });
 

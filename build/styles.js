@@ -10,7 +10,7 @@ module.exports = function(gulp, dirs) {
   // Task `styles`
   // compiles stylesheet and optimises file 
   gulp.task('styles', function() {
-    return gulp.src(path.resolve(dirs.src, 'style.scss'))
+    return gulp.src(path.resolve(dirs.src, dirs.components, 'components.scss'))
       .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
       .pipe(postcss([

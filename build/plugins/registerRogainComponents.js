@@ -6,9 +6,10 @@ module.exports = function registerRogainComponents(files, metal, done) {
     var file = files[name];
     if (match(name, 'components/*.json')) {
       var Name = name.split('/')[1].split('.')[0];
-      config.components.register(Name, JSON.parse(file.contents.toString()));
+      config.components.register(Name, JSON.parse(file.contents));
     }
   });
+
   
   done();
 }

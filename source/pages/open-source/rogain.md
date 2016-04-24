@@ -1,6 +1,5 @@
 ---
 title: Rogain
-layout: PageArticle
 ---
 
 # A templating language that focuses on composability
