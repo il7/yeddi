@@ -1,7 +1,5 @@
-import helpers from './helpers/components';
-import modules from './modules/components';
-import layouts from './layouts/components';
+const helpers = require('./helpers/components');
+const modules = require('./modules/components');
+const layouts = require('./layouts/components');
 
-const components = Object.assign({}, helpers, modules, layouts);
-
-export default components;
+module.exports = Object.assign({}, helpers, modules, layouts);

@@ -1,9 +1,0 @@
-export { default as LayoutArchive } from './archive/LayoutArchive.rogain';
-export { default as LayoutArticle } from './article/LayoutArticle.rogain';
-export { default as LayoutBasic } from './basic/LayoutBasic.rogain';
-export { default as LayoutFooter } from './footer/LayoutFooter.rogain';
-export { default as LayoutMast } from './mast/LayoutMast.rogain';
-export { default as LayoutPage } from './page/LayoutPage.rogain';
-export { default as LayoutRoot } from './root/LayoutRoot.rogain';
-export { default as LayoutSearch } from './search/LayoutSearch.rogain';
-export { default as LayoutSearchResult } from './search/LayoutSearchResult.rogain';

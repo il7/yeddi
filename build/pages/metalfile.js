@@ -1,25 +1,23 @@
-var ignore = require('metalsmith-ignore');
-var publish = require('metalsmith-publish');
-var markdown = require('metalsmith-markdown');
-var headingsIdentifier = require('metalsmith-headings-identifier');
-var paths = require('metalsmith-paths');
-var hierarchy = require('metalsmith-hierarchy');
-var filemetadata = require('metalsmith-filemetadata');
-var collections = require('metalsmith-collections');
-var rewrite = require('metalsmith-rewrite');
-var slug = require('slug');
-var pagination = require('metalsmith-pagination');
-var permalinks = require('metalsmith-permalinks');
-var externalLinks = require('metalsmith-external-links');
-var changed = require('metalsmith-changed');
-var excerpts = require('metalsmith-better-excerpts');
+const ignore = require('metalsmith-ignore');
+const publish = require('metalsmith-publish');
+const markdown = require('metalsmith-markdown');
+const headingsIdentifier = require('metalsmith-headings-identifier');
+const paths = require('metalsmith-paths');
+const hierarchy = require('metalsmith-hierarchy');
+const filemetadata = require('metalsmith-filemetadata');
+const collections = require('metalsmith-collections');
+const rewrite = require('metalsmith-rewrite');
+const slug = require('slug');
+const pagination = require('metalsmith-pagination');
+const permalinks = require('metalsmith-permalinks');
+const externalLinks = require('metalsmith-external-links');
+const changed = require('metalsmith-changed');
+const excerpts = require('metalsmith-better-excerpts');
 
-var config;
-
-module.exports = function use(ms) {
-  config = require('./rogain-config');
-  
+module.exports = function use(ms) {  
   ms.use(IgnoreFiles)
+    .use(RegisterComponents)
+    .use(IgnoreComponents)
     .use(Published)
     .use(Markdown)
     .use(Excerpts)
@@ -31,36 +29,39 @@ module.exports = function use(ms) {
     .use(MainMenuCollection)
     .use(Permalinks)
     .use(Slug)
-    // .use(RenderInPlace)
-    // .use(RenderLayouts)
+    .use(RenderInPlace)
+    .use(RenderLayouts)
     .use(Rewrite);
 };
 
 // Plugins
-var RenderInPlace = require('./plugins/renderRogainInPlace');
-var RenderLayouts = require('./plugins/renderRogainLayout');
+const config = require('./plugins/rogain-config.js');
+const RenderInPlace = require('./plugins/renderRogainInPlace')(config);
+const RenderLayouts = require('./plugins/renderRogainLayout')(config);
+const RegisterComponents = require('./plugins/registerRogainComponents.js')(config);
 
-var IgnoreFiles = ignore([ '**/.DS_Store' ]);
-var Published = publish();
-var Markdown = markdown();
-var Headings = headingsIdentifier();
-var Hierarchy = hierarchy();
-var ExLinks = externalLinks({ domain: "il7.io" });
+const IgnoreFiles = ignore([ '**/.DS_Store' ]);
+const IgnoreComponents = ignore([ 'components/**' ]);
+const Published = publish();
+const Markdown = markdown();
+const Headings = headingsIdentifier();
+const Hierarchy = hierarchy();
+const ExLinks = externalLinks({ domain: "il7.io" });
 
-var Excerpts = excerpts({
+const Excerpts = excerpts({
   stripTags: true,
   pruneLength: 200,
   pruneString: '...'
 })
 
-var HasChanged = changed({ 
+const HasChanged = changed({ 
   extnames: {
     '.md': '/index.html',
     '.rogain': '/index.html'
   }
 });
 
-var Rewrite = rewrite([
+const Rewrite = rewrite([
   {
     pattern: '**/*.rogain',
     filename: '{path.dir}/{path.name}.html'
@@ -70,20 +71,20 @@ var Rewrite = rewrite([
   }
 ]);
 
-var Permalinks = permalinks({
+const Permalinks = permalinks({
   relative: false
 });
 
-var Slug = function(files, metal, done) {
+const Slug = function(files, metal, done) {
   Object.keys(files).forEach(function(name) {
-    var file = files[name];
+    const file = files[name];
     file.slug = slug(file.title, { lower: true });
   });
 
   done();
 };
 
-var DefaultMetadata = filemetadata([{
+const DefaultMetadata = filemetadata([{
   pattern: 'articles/**/*', 
   metadata: {
     layout: 'LayoutArticle',
@@ -97,7 +98,7 @@ var DefaultMetadata = filemetadata([{
   }
 }]);
 
-var ArchiveIndexMetadata = filemetadata([{
+const ArchiveIndexMetadata = filemetadata([{
   pattern: 'articles/index.html', 
   metadata: { collection: 'mainMenu', menuOrder: 0 }
 }, {
@@ -108,7 +109,7 @@ var ArchiveIndexMetadata = filemetadata([{
   metadata: { collection: 'mainMenu', menuOrder: 2 }
 }]);
 
-var Collections = collections({
+const Collections = collections({
   articles: {
     pattern: 'articles/**/*',
     sortBy: 'date',
@@ -120,13 +121,13 @@ var Collections = collections({
   }
 });
 
-var MainMenuCollection = collections({
+const MainMenuCollection = collections({
   'mainMenu': {
     sortBy: 'menuOrder'
   }
 })
 
-var Pagination = pagination({
+const Pagination = pagination({
   'collections.articles': {
     perPage: 7,
     layout: 'LayoutArchive',

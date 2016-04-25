@@ -5,11 +5,12 @@ const sequence = require('run-sequence').use(gulp);
 const dirs = {
   src: 'source',
   srcComponents: 'source/components',
-  srcPages: 'source/pages',
   srcAssets: 'source/assets',
+  srcPages: 'source/pages',
   dest: 'dist',
-  destStyleGuide: 'dist/styleguide',
-  destAssets: 'dist/assets'
+  destComponents: 'dist/assets/components',
+  destAssets: 'dist/assets',
+  destStyleGuide: 'styleguide'
 };
 
 require('./build/core/tasks')(dirs);
@@ -22,20 +23,14 @@ require('./build/pages/tasks')(dirs);
 gulp.task('watch', function (done) {
   gulp.watch('source/**/*.scss', ['styles']);
   gulp.watch('source/pages/**/*', ['pages']);
+  gulp.watch('source/components/**/*', ['precompile-components']);
 
-  sequence([
-    'watch-script',
-    'watch-components'
-  ], done)
+  sequence(['watch-script'], done)
 });
 
 // main tasks
 gulp.task('default', function(done) {
-  sequence('clean', 'copy-assets', [
-    'styles',
-    'script',
-    'precompile-components'
-  ], 'pages', done);
+  sequence('clean', 'copy-assets', ['styles', 'script', 'precompile-components'], 'pages', done);
 });
 
 gulp.task('develop', function(done) {
