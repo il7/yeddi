@@ -56,7 +56,6 @@
     "metalsmith-rewrite": "^0.1.2",
     "metalsmith-slug": "0.0.5",
     "minimatch": "^3.0.0",
-    "require-dir": "^0.3.0",
     "rogain-core-components": "~1.0",
     "rogain-parser": "~0.5",
     "rogain-registry": "~0.1",

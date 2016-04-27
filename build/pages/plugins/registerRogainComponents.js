@@ -10,8 +10,6 @@ module.exports = function registerRogainComponents(config) {
       }
     });
 
-    console.log(config)
-    
     done();
   }
 }

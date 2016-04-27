@@ -8,8 +8,8 @@
   h5 { @extend h5.heading; }
   h6 { @extend h6.heading; }
   
-  p, blockquote { @extend .textblock; }
-  blockquote { @extend .textblock--blockquote; }
+  // p, blockquote { @extend .textblock; }
+  // blockquote { @extend .textblock--blockquote; }
 
   ul, ol { 
     @extend .list;

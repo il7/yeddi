@@ -12,8 +12,8 @@ title: IL7
       <nav>
         <List class="menu" aria-role="menu">
           <Each data={collections.mainMenu}>
-            <ListItem data-id={@item.path} class="menu--{@item.path}" aria-role="menu-item">
-              <a href="/{@item.path}">{@item.title}</a>
+            <ListItem data-id={@item.slug} class="menu--{@item.slug}" aria-role="menu-item">
+              <a href="/{@item.slug}">{@item.title}</a>
             </ListItem>
           </Each>
 

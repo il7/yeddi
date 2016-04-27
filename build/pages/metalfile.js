@@ -30,7 +30,7 @@ module.exports = function use(ms) {
     .use(Permalinks)
     .use(Slug)
     .use(RenderInPlace)
-    .use(RenderLayouts)
+    // .use(RenderLayouts)
     .use(Rewrite);
 };
 
