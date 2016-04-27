@@ -19,12 +19,12 @@
     "images": "source/assets/images",
     "svgs": "source/assets/svgs",
     "fonts": "source/assets/fonts",
-    "dest": "dest",
-    "assets": "dest/assets",
-    "destImages": "dest/assets/images",
-    "destSvgs": "dest/assets/svgs",
-    "destFonts": "dest/assets/fonts",
-    "styleguide": "dest/styleguide"
+    "dest": "dist",
+    "assets": "dist/assets",
+    "destImages": "dist/assets/images",
+    "destSvgs": "dist/assets/svgs",
+    "destFonts": "dist/assets/fonts",
+    "styleguide": "dist/styleguide"
   },
   "repository": {
     "type": "git",
