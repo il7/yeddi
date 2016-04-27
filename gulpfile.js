@@ -1,36 +1,23 @@
-// general plugins
+const requireDir = require('require-dir')
 const gulp = require('gulp');
 const sequence = require('run-sequence').use(gulp);
 
-const dirs = {
-  src: 'source',
-  srcComponents: 'source/components',
-  srcAssets: 'source/assets',
-  srcPages: 'source/pages',
-  dest: 'dist',
-  destComponents: 'dist/assets/components',
-  destAssets: 'dist/assets',
-  destStyleGuide: 'styleguide'
-};
-
-require('./build/core/tasks')(dirs);
-require('./build/styles/tasks')(dirs);
-require('./build/scripts/tasks')(dirs);
-require('./build/components/tasks')(dirs);
-require('./build/pages/tasks')(dirs);
+// import all tasks from task folders
+requireDir('./tasks');
 
 // watchers
-gulp.task('watch', function (done) {
+gulp.task('watch', function() {
   gulp.watch('source/**/*.scss', ['styles']);
-  gulp.watch('source/pages/**/*', ['pages']);
-  gulp.watch('source/components/**/*', ['precompile-components']);
-
-  sequence(['watch-script'], done)
+  gulp.watch('source/assets/**/*', ['copy-assets']);
 });
 
 // main tasks
+gulp.task('build-core', function(done) {
+  sequence(['styles', 'scripts', 'images', 'svgs', 'fonts'], done);
+});
+
 gulp.task('default', function(done) {
-  sequence('clean', 'copy-assets', ['styles', 'script', 'precompile-components'], 'pages', done);
+  sequence('clean', 'build-core', done);
 });
 
 gulp.task('develop', function(done) {

@@ -11,7 +11,6 @@ const buffer = require('vinyl-buffer');
 
 module.exports = function createBundler(b, opts) {
   b.transform(babelify, { presets: ['es2015'] });
-  b.transform(rogainify)
 
   b.on('update', bundle); // on any dep update, runs the bundler
   b.on('log', gutil.log); // output build logs to terminal

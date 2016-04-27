@@ -3,3 +3,7 @@
 // import MenuBehavior from './modules/menu/behavior';
 
 // global.app = 
+
+function Helo() {
+  alert('boo')
+}
